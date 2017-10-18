@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringEnums", "StringEnums\StringEnums.csproj", "{5CCCCEF5-5D7B-4D7B-955E-27E9CEEA9269}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringEnums.Tests", "StringEnums.Tests\StringEnums.Tests.csproj", "{B9FAD3B4-B31E-4C22-ABA9-BC4AE419CFEA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5CCCCEF5-5D7B-4D7B-955E-27E9CEEA9269}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CCCCEF5-5D7B-4D7B-955E-27E9CEEA9269}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CCCCEF5-5D7B-4D7B-955E-27E9CEEA9269}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9FAD3B4-B31E-4C22-ABA9-BC4AE419CFEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9FAD3B4-B31E-4C22-ABA9-BC4AE419CFEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9FAD3B4-B31E-4C22-ABA9-BC4AE419CFEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9FAD3B4-B31E-4C22-ABA9-BC4AE419CFEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
