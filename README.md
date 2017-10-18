@@ -1,11 +1,11 @@
 ## StringEnums&nbsp;&nbsp;
 
-***A flexible alternative to System.Emum***
-- a StringEnum is similar to System.Emum with underlying type string
+***A flexible alternative to System.Enum***
+- a StringEnum is similar to System.Enum with underlying type string
 - each StringEnum value may be represented by one or more strings
 - a StringEnum is a reference type, so it's default value is null
-- contained in a single C# 7 source file supporting .NET Standard 2.0+ with no dependencies
-- faster than attributes
+- *StringEnums* is contained in a single C# 7 source file supporting .NET Standard 2.0+ with no dependencies
+- faster than using string attributes
 - tested
 
 #### usage
@@ -46,10 +46,8 @@ Assert.Equal(Location.Europe, Location.Parse("EUROPE"));
 ```
 #### extensions
 ```csharp
-Assert.True(typeof(OrderType).IsStringEnum());
-Assert.True(typeof(OrderType).GetTypeInfo().IsStringEnum());
+Assert.True(OrderType.Market.GetType().IsStringEnum());
+Assert.True(OrderType.Market.GetType().GetTypeInfo().IsStringEnum());
 
 Assert.Equal(OrderType.Market, "MARKET".ToStringEnum<OrderType>());
 ```
-
-
