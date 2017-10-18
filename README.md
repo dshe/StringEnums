@@ -2,7 +2,7 @@
 
 ***An alternative to System.Emum***
 
-- A StringEnum is similar to System.Emum but with underlying type string.
+- A StringEnum is similar to System.Emum with underlying type string.
 - Each StringEnum value may be represented by one or more string values.
 - StringEnum is a reference type, so it's default value is null.
 - StringEnum is fast.
@@ -36,12 +36,19 @@ public sealed class Location : StringEnum<Location>
 
 Assert.Equal(Location.America, Location.Parse("America"));
 Assert.Equal(Location.America, Location.Parse("USA"));
-Assert.Equal("America", America.ToString());
+Assert.Equal("America", Location.America.ToString());
 ```
 #### case insensitivity
 ```csharp
 Location.SetComparer(StringComparer.OrdinalIgnoreCase);
 Assert.Equal(Location.Europe, Location.Parse("EUROPE"));
+```
+#### extensions
+```csharp
+Assert.True(typeof(OrderType).IsStringEnum());
+Assert.True(typeof(OrderType).GetTypeInfo().IsStringEnum());
+
+Assert.Equal(OrderType.Market, "MARKET".ToStringEnum<OrderType>());
 ```
 
 
