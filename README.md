@@ -1,11 +1,12 @@
-## StringEnum&nbsp;&nbsp;
+## StringEnums&nbsp;&nbsp;
 
-***An alternative to System.Emum***
-
-- A StringEnum is similar to System.Emum with underlying type string.
-- Each StringEnum value may be represented by one or more string values.
-- StringEnum is a reference type, so it's default value is null.
-- StringEnum is fast.
+***A flexible alternative to System.Emum***
+- a StringEnum is similar to System.Emum with underlying type string
+- each StringEnum value may be represented by one or more strings
+- a StringEnum is a reference type, so it's default value is null
+- contained in a single C# 7 source file supporting .NET Standard 2.0+ with no dependencies
+- faster than attributes
+- tested
 
 #### usage
 ```csharp
