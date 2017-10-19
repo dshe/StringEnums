@@ -17,9 +17,10 @@ public sealed class OrderType : StringEnum<OrderType>
      public static readonly OrderType Limit = Create("LIMIT");
 }
 
-Assert.Equal(OrderType.Market, OrderType.Parse("MARKET"));
-
 Assert.Equal("MARKET", OrderType.Market.ToString());
+
+Assert.Equal(OrderType.Market, OrderType.Parse("MARKET"));
+Assert.Equal(OrderType.Market, "MARKET".ToStringEnum<OrderType>());
 ```
 #### new values
 ```csharp
