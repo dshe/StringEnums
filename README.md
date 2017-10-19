@@ -20,7 +20,6 @@ public sealed class OrderType : StringEnum<OrderType>
 OrderType.Market.ToString() => "MARKET"
 
 OrderType.ToStringEnum("MARKET") => OrderType.Market
-"MARKET".ToStringEnum<OrderType>() => OrderType.Market
 
 OrderType.ToStringEnums() => new List<OrderType> { OrderType.Market, OrderType.Limit }
 
