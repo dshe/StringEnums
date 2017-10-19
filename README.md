@@ -2,10 +2,11 @@
 
 ***A flexible alternative to System.Enum***
 - a StringEnum is similar to System.Enum with underlying type string
-- each StringEnum value may be represented by one or more strings
-- a StringEnum is a reference type, so it's default value is null
-- *StringEnums* is contained in a single C# 7 source file supporting .NET Standard 2.0+ with no dependencies
-- *StringEnums* are faster and easier than using string attributes and reflection
+- each StringEnum value is represented by one or more strings
+- a StringEnum value is a reference type, so it's default value is null
+- All StringEnums functionality is contained in a single C# 7 source file supporting .NET Standard 2.0+ with no dependencies
+- StringEnums are faster and easier than using string attributes and reflection
+- very simple API
 - tested
 
 #### usage
