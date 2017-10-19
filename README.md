@@ -41,7 +41,9 @@ public sealed class Location : StringEnum<Location>
 Assert.Equal(Location.America, Location.ToStringEnum("America"));
 Assert.Equal(Location.America, Location.ToStringEnum("USA"));
 
-Assert.Equal("America", Location.America.ToString());
+Assert.Equal("America", Location.America.**ToString()**);
+
+Assert.Equal(new List<string> {"America", "USA"}, Location.America.**ToStrings()**);
 ```
 #### case insensitivity
 ```csharp
