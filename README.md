@@ -12,13 +12,14 @@
 ```csharp
 public sealed class OrderType : StringEnum<OrderType>
 {
-     public static readonly OrderType Undefined = Create("");
      public static readonly OrderType Market = Create("MARKET");
      public static readonly OrderType Limit = Create("LIMIT");
 }
 
-Assert.Equal(OrderType.Market, OrderType.Parse("MARKET"));
 Assert.Equal("MARKET", OrderType.Market.ToString());
+
+Assert.Equal(OrderType.Market, OrderType.Parse("MARKET"));
+Assert.Equal(OrderType.Market, "MARKET".ToStringEnum<OrderType>());
 ```
 #### new values
 ```csharp
@@ -31,12 +32,14 @@ Assert.True(newValue.IsNewValue);
 ```csharp
 public sealed class Location : StringEnum<Location>
 {
+     public static readonly Location Undefined = Create("");
      public static readonly Location Europe = Create("Europe");
      public static readonly Location America = Create("America", "USA");
 }
 
 Assert.Equal(Location.America, Location.Parse("America"));
 Assert.Equal(Location.America, Location.Parse("USA"));
+
 Assert.Equal("America", Location.America.ToString());
 ```
 #### case insensitivity
@@ -46,8 +49,7 @@ Assert.Equal(Location.Europe, Location.Parse("EUROPE"));
 ```
 #### extensions
 ```csharp
-Assert.True(OrderType.Market.GetType().IsStringEnum());
-Assert.True(OrderType.Market.GetType().GetTypeInfo().IsStringEnum());
+Assert.True(OrderType.Location.GetType().IsStringEnum());
 
-Assert.Equal(OrderType.Market, "MARKET".ToStringEnum<OrderType>());
+Assert.Equal(OrderType.Europe, "Europe".ToStringEnum<OrderType>());
 ```
