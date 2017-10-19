@@ -5,7 +5,7 @@
 - each StringEnum value may be represented by one or more strings
 - a StringEnum is a reference type, so it's default value is null
 - *StringEnums* is contained in a single C# 7 source file supporting .NET Standard 2.0+ with no dependencies
-- faster than using string attributes
+- *StringEnums* are faster and easier than using string attributes and reflection
 - tested
 
 #### usage
@@ -18,14 +18,14 @@ public sealed class OrderType : StringEnum<OrderType>
 
 Assert.Equal("MARKET", OrderType.Market.ToString());
 
-Assert.Equal(OrderType.Market, OrderType.Parse("MARKET"));
+Assert.Equal(OrderType.Market, OrderType.ToStringEnum("MARKET"));
 Assert.Equal(OrderType.Market, "MARKET".ToStringEnum<OrderType>());
 ```
 #### new values
 ```csharp
 Assert.False(OrderType.Market.IsNewValue);
 
-var newValue = OrderType.Parse("SOME NEW VALUE");
+var newValue = OrderType.ToStringEnum("SOME NEW VALUE");
 Assert.True(newValue.IsNewValue);
 ```
 #### multiple values
@@ -37,15 +37,15 @@ public sealed class Location : StringEnum<Location>
      public static readonly Location America = Create("America", "USA");
 }
 
-Assert.Equal(Location.America, Location.Parse("America"));
-Assert.Equal(Location.America, Location.Parse("USA"));
+Assert.Equal(Location.America, Location.ToStringEnum("America"));
+Assert.Equal(Location.America, Location.ToStringEnum("USA"));
 
 Assert.Equal("America", Location.America.ToString());
 ```
 #### case insensitivity
 ```csharp
 Location.SetComparer(StringComparer.OrdinalIgnoreCase);
-Assert.Equal(Location.Europe, Location.Parse("EUROPE"));
+Assert.Equal(Location.Europe, Location.ToStringEnum("EUROPE"));
 ```
 #### extensions
 ```csharp
