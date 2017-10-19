@@ -22,21 +22,21 @@ namespace StringEnums.Tests
         {
             Assert.Equal("1", StringEnumA.Name1.ToString());
             Assert.False(StringEnumA.Name1.IsNewValue);
-            Assert.Equal(StringEnumA.Name1, StringEnumA.Parse("1"));
+            Assert.Equal(StringEnumA.Name1, StringEnumA.ToStringEnum("1"));
 
             Assert.Equal("2", StringEnumA.Name2.ToString());
             Assert.False(StringEnumA.Name2.IsNewValue);
-            Assert.Equal(StringEnumA.Name2, StringEnumA.Parse("2"));
+            Assert.Equal(StringEnumA.Name2, StringEnumA.ToStringEnum("2"));
 
             Assert.Equal("4", StringEnumA.Name4.ToString());
             Assert.False(StringEnumA.Name4.IsNewValue);
-            Assert.Equal(StringEnumA.Name4, StringEnumA.Parse("4"));
+            Assert.Equal(StringEnumA.Name4, StringEnumA.ToStringEnum("4"));
         }
 
         [Fact]
         public void T02_MultipleValues()
         {
-            var e = StringEnumA.Parse("3");
+            var e = StringEnumA.ToStringEnum("3");
             Assert.Equal(StringEnumA.Name2, e);
             Assert.False(e.IsNewValue);
         }
@@ -44,12 +44,12 @@ namespace StringEnums.Tests
         [Fact]
         public void T03_NewValue()
         {
-            var empty = StringEnumA.Parse("");
+            var empty = StringEnumA.ToStringEnum("");
             Assert.Equal("", empty.ToString());
             Assert.True(empty.IsNewValue);
-            Assert.Equal(empty, StringEnumA.Parse(""));
+            Assert.Equal(empty, StringEnumA.ToStringEnum(""));
 
-            var e = StringEnumA.Parse("x");
+            var e = StringEnumA.ToStringEnum("x");
             Assert.Equal("x", e.ToString());
             Assert.True(e.IsNewValue);
         }
@@ -57,8 +57,8 @@ namespace StringEnums.Tests
         [Fact]
         public void T04_Parse()
         {
-            Assert.Throws<ArgumentNullException>(() => StringEnumA.Parse(null));
-            var e = StringEnumA.Parse("");
+            Assert.Throws<ArgumentNullException>(() => StringEnumA.ToStringEnum(null));
+            var e = StringEnumA.ToStringEnum("");
             Assert.Equal("", e.ToString());
             Assert.True(e.IsNewValue);
         }

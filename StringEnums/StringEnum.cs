@@ -49,7 +49,7 @@ namespace StringEnums
             return t;
         }
 
-        public static T Parse(string s)
+        public static T ToStringEnum(string s)
         {
             if (s == null)
                 throw new ArgumentNullException(nameof(s));
@@ -69,7 +69,7 @@ namespace StringEnums
     public static class StringEnumsEx
     {
         public static T ToStringEnum<T>(this string str) where T: StringEnum<T>, new()
-            => StringEnum<T>.Parse(str);
+            => StringEnum<T>.ToStringEnum(str);
 
         public static bool IsStringEnum(this Type type) => IsStringEnum(type.GetTypeInfo());
         public static bool IsStringEnum(this TypeInfo typeInfo)

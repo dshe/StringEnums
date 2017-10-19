@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using Xunit;
 
 namespace StringEnums.Tests
@@ -19,21 +18,15 @@ namespace StringEnums.Tests
         {
             Assert.Equal("MARKET", OrderType.Market.ToString());
 
-            Assert.Equal(OrderType.Market, OrderType.Parse("MARKET"));
+            Assert.Equal(OrderType.Market, OrderType.ToStringEnum("MARKET"));
 
-            Assert.False(OrderType.Market.IsNewValue);
-
-            var newValue = OrderType.Parse("SOME NEW VALUE");
-            Assert.True(newValue.IsNewValue);
+            Assert.False(OrderType.ToStringEnum("MARKET").IsNewValue);
+            Assert.True(OrderType.ToStringEnum("SOME NEW VALUE").IsNewValue);
 
             StringEnumC.SetComparer(StringComparer.OrdinalIgnoreCase);
-            Assert.Equal(StringEnumC.Parse("SomeNewValue"), StringEnumC.Parse("SOMENewValue"));
+            Assert.Equal(StringEnumC.ToStringEnum("SomeNewValue"), StringEnumC.ToStringEnum("SOMENewValue"));
 
-            OrderType xx = new OrderType();
-            var xbx = xx.GetType();
             Assert.True(OrderType.Market.GetType().IsStringEnum());
-            Assert.True(OrderType.Market.GetType().GetTypeInfo().IsStringEnum());
-            ;
         }
 
 

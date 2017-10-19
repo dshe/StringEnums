@@ -22,7 +22,7 @@ namespace StringEnums.Tests
             var e = Create("A");
             Assert.Equal("A", e.ToString());
             Assert.False(e.IsNewValue);
-            Assert.Equal(e, Parse("A"));
+            Assert.Equal(e, ToStringEnum("A"));
         }
 
         [Fact]
@@ -31,17 +31,17 @@ namespace StringEnums.Tests
             var e = Create("B", "C");   // multiple
             Assert.Equal("B", e.ToString()); // the first represents the value
             Assert.False(e.IsNewValue);
-            Assert.Equal(e, Parse("B"));
-            Assert.Equal(e, Parse("C"));
+            Assert.Equal(e, ToStringEnum("B"));
+            Assert.Equal(e, ToStringEnum("C"));
         }
 
         [Fact]
         public void T04_ParseNew()
         {
-            Assert.Throws<ArgumentNullException>(() => Parse(null));
-            var e1 = Parse("D");
+            Assert.Throws<ArgumentNullException>(() => ToStringEnum(null));
+            var e1 = ToStringEnum("D");
             Assert.True(e1.IsNewValue);
-            Assert.Equal(e1, Parse("D"));
+            Assert.Equal(e1, ToStringEnum("D"));
         }
     }
 }

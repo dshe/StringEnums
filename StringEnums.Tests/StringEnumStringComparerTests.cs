@@ -12,14 +12,14 @@ namespace StringEnums.Tests
         [Fact]
         public void T00_Comparer()
         {
-            Assert.NotEqual(StringEnumB.Parse("SomeNewValue"), StringEnumB.Parse("SOMENewValue"));
+            Assert.NotEqual(StringEnumB.ToStringEnum("SomeNewValue"), StringEnumB.ToStringEnum("SOMENewValue"));
         }
 
         [Fact]
         public void T01_Comparer()
         {
             StringEnumC.SetComparer(StringComparer.OrdinalIgnoreCase);
-            Assert.Equal(StringEnumC.Parse("SomeNewValue"), StringEnumC.Parse("SOMENewValue"));
+            Assert.Equal(StringEnumC.ToStringEnum("SomeNewValue"), StringEnumC.ToStringEnum("SOMENewValue"));
         }
 
     }
