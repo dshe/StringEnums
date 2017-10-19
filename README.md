@@ -52,7 +52,7 @@ Location.ToStringEnum("EUROPE") => Location.Europe
 ```
 #### extensions
 ```csharp
-OrderType.Location.GetType().IsStringEnum() => true
-
 "Europe".ToStringEnum<OrderType>() => OrderType.Europe
+
+OrderType.Location.GetType().IsStringEnum() => true
 ```
