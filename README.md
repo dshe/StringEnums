@@ -49,7 +49,7 @@ Assert.Equal(Location.Europe, Location.Parse("EUROPE"));
 ```
 #### extensions
 ```csharp
-Assert.True(OrderType.Market.GetType().IsStringEnum());
+Assert.True(OrderType.Location.GetType().IsStringEnum());
 
-Assert.Equal(OrderType.Market, "MARKET".ToStringEnum<OrderType>());
+Assert.Equal(OrderType.Europe, "Europe".ToStringEnum<OrderType>());
 ```
