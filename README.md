@@ -12,7 +12,6 @@
 ```csharp
 public sealed class OrderType : StringEnum<OrderType>
 {
-     public static readonly OrderType Undefined = Create("");
      public static readonly OrderType Market = Create("MARKET");
      public static readonly OrderType Limit = Create("LIMIT");
 }
@@ -33,6 +32,7 @@ Assert.True(newValue.IsNewValue);
 ```csharp
 public sealed class Location : StringEnum<Location>
 {
+     public static readonly Location Undefined = Create("");
      public static readonly Location Europe = Create("Europe");
      public static readonly Location America = Create("America", "USA");
 }
