@@ -17,17 +17,19 @@ public sealed class OrderType : StringEnum<OrderType>
      public static readonly OrderType Limit  = Create("LIMIT");
 }
 
-Assert.Equal("MARKET", OrderType.Market.ToString());
+OrderType.Market.ToString() => "MARKET"
 
-Assert.Equal(OrderType.Market, OrderType.ToStringEnum("MARKET"));
-Assert.Equal(OrderType.Market, "MARKET".ToStringEnum<OrderType>());
+OrderType.ToStringEnum("MARKET") => OrderType.Market
+"MARKET".ToStringEnum<OrderType>() => OrderType.Market
+
+OrderType.ToStringEnums() => new List<OrderType> { OrderType.Market, OrderType.Limit }
+
 ```
 #### new values
 ```csharp
-Assert.False(OrderType.Market.IsNewValue);
+OrderType.Market.IsNewValue => false
 
-var newValue = OrderType.ToStringEnum("SOME NEW VALUE");
-Assert.True(newValue.IsNewValue);
+OrderType.ToStringEnum("SOME NEW VALUE").IsNewValue => true
 ```
 #### multiple values
 ```csharp
@@ -38,21 +40,20 @@ public sealed class Location : StringEnum<Location>
      public static readonly Location America   = Create("America", "USA");
 }
 
-Assert.Equal(Location.America, Location.ToStringEnum("America"));
-Assert.Equal(Location.America, Location.ToStringEnum("USA"));
+Location.ToStringEnum("America")  => Location.America
+Location.ToStringEnum("USA")      => Location.America
 
-Assert.Equal("America", Location.America.**ToString()**);
-
-Assert.Equal(new List<string> {"America", "USA"}, Location.America.**ToStrings()**);
+Location.America.ToString()  => "America"
+Location.America.ToStrings() => new List<string> {"America", "USA"}
 ```
 #### case insensitivity
 ```csharp
-Location.SetComparer(StringComparer.OrdinalIgnoreCase);
-Assert.Equal(Location.Europe, Location.ToStringEnum("EUROPE"));
+Location.SetComparer(StringComparer.OrdinalIgnoreCase)
+Location.ToStringEnum("EUROPE") => Location.Europe
 ```
 #### extensions
 ```csharp
-Assert.True(OrderType.Location.GetType().IsStringEnum());
+OrderType.Location.GetType().IsStringEnum() => true
 
-Assert.Equal(OrderType.Europe, "Europe".ToStringEnum<OrderType>());
+"Europe".ToStringEnum<OrderType>() => OrderType.Europe
 ```
