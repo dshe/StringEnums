@@ -44,8 +44,8 @@ namespace StringEnums.Tests
 
             perf.MeasureRate(() =>
             {
-                Assert.Equal(OrderTypeE.TrailingLimit, "TRAILING LIMIT".ToEnum<OrderTypeE>());
-            }, "Parse primitive enum with attribute.");
+                Assert.Equal(OrderTypeE.Market, "MARKET".ToEnum<OrderTypeE>());
+            }, "Parse primitive enum with description attribute.");
 
             perf.MeasureRate(() =>
             {

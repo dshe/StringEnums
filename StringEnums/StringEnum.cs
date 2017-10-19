@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+StringEnums 1.0
+https://github.com/dshe/StringEnums
+Copyright(c) 2017 DavidS.
+Licensed under the Apache License 2.0:
+http://www.apache.org/licenses/LICENSE-2.0
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -10,7 +18,7 @@ namespace StringEnums
     {
         private static Dictionary<string, T> Dict = new Dictionary<string, T>();
         public static void SetComparer(StringComparer comparer) => Dict = new Dictionary<string, T>(Dict, comparer);
-        public string Value { get; private set; }
+        private string Value;
         public bool IsNewValue { get; private set; }
         public override string ToString() => Value;
 
@@ -21,7 +29,7 @@ namespace StringEnums
             if (strings == null || strings.Length == 0 || strings.Any(x => x == null))
                 throw new ArgumentException(nameof(strings));
 
-            // If more than one string is provided, the first string represents the value of the item.
+            // if more than one string is provided, the first string represents the value of the item.
             var t = new T { Value = strings[0] };
 
             foreach (var s in strings)

@@ -20,7 +20,7 @@ namespace StringEnums.Tests
         public void T02_CreateOne()
         {
             var e = Create("A");
-            Assert.Equal("A", e.Value);
+            Assert.Equal("A", e.ToString());
             Assert.False(e.IsNewValue);
             Assert.Equal(e, Parse("A"));
         }
@@ -29,7 +29,7 @@ namespace StringEnums.Tests
         public void T03_CreateMultiple()
         {
             var e = Create("B", "C");   // multiple
-            Assert.Equal("B", e.Value); // the first represents the value
+            Assert.Equal("B", e.ToString()); // the first represents the value
             Assert.False(e.IsNewValue);
             Assert.Equal(e, Parse("B"));
             Assert.Equal(e, Parse("C"));

@@ -20,15 +20,15 @@ namespace StringEnums.Tests
         [Fact]
         public void T01_Value()
         {
-            Assert.Equal("1", StringEnumA.Name1.Value);
+            Assert.Equal("1", StringEnumA.Name1.ToString());
             Assert.False(StringEnumA.Name1.IsNewValue);
             Assert.Equal(StringEnumA.Name1, StringEnumA.Parse("1"));
 
-            Assert.Equal("2", StringEnumA.Name2.Value);
+            Assert.Equal("2", StringEnumA.Name2.ToString());
             Assert.False(StringEnumA.Name2.IsNewValue);
             Assert.Equal(StringEnumA.Name2, StringEnumA.Parse("2"));
 
-            Assert.Equal("4", StringEnumA.Name4.Value);
+            Assert.Equal("4", StringEnumA.Name4.ToString());
             Assert.False(StringEnumA.Name4.IsNewValue);
             Assert.Equal(StringEnumA.Name4, StringEnumA.Parse("4"));
         }
@@ -45,12 +45,12 @@ namespace StringEnums.Tests
         public void T03_NewValue()
         {
             var empty = StringEnumA.Parse("");
-            Assert.Equal("", empty.Value);
+            Assert.Equal("", empty.ToString());
             Assert.True(empty.IsNewValue);
             Assert.Equal(empty, StringEnumA.Parse(""));
 
             var e = StringEnumA.Parse("x");
-            Assert.Equal("x", e.Value);
+            Assert.Equal("x", e.ToString());
             Assert.True(e.IsNewValue);
         }
 
@@ -59,7 +59,7 @@ namespace StringEnums.Tests
         {
             Assert.Throws<ArgumentNullException>(() => StringEnumA.Parse(null));
             var e = StringEnumA.Parse("");
-            Assert.Equal(e.Value, "");
+            Assert.Equal("", e.ToString());
             Assert.True(e.IsNewValue);
         }
 
@@ -67,7 +67,7 @@ namespace StringEnums.Tests
         public void T05_Constructor()
         {
             var nullEnum = new StringEnumA();
-            Assert.Equal(null, nullEnum.ToString());
+            Assert.Null(nullEnum.ToString());
             Assert.False(nullEnum.IsNewValue);
         }
 
