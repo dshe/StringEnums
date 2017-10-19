@@ -18,6 +18,7 @@ public sealed class OrderType : StringEnum<OrderType>
 }
 
 Assert.Equal(OrderType.Market, OrderType.Parse("MARKET"));
+
 Assert.Equal("MARKET", OrderType.Market.ToString());
 ```
 #### new values
@@ -37,6 +38,7 @@ public sealed class Location : StringEnum<Location>
 
 Assert.Equal(Location.America, Location.Parse("America"));
 Assert.Equal(Location.America, Location.Parse("USA"));
+
 Assert.Equal("America", Location.America.ToString());
 ```
 #### case insensitivity
@@ -47,7 +49,6 @@ Assert.Equal(Location.Europe, Location.Parse("EUROPE"));
 #### extensions
 ```csharp
 Assert.True(OrderType.Market.GetType().IsStringEnum());
-Assert.True(OrderType.Market.GetType().GetTypeInfo().IsStringEnum());
 
 Assert.Equal(OrderType.Market, "MARKET".ToStringEnum<OrderType>());
 ```
