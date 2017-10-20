@@ -51,7 +51,7 @@ Location.ToStringEnum("EUROPE") => Location.Europe
 ```
 #### extensions
 ```csharp
-"Europe".ToStringEnum<OrderType>() => OrderType.Europe
+"Europe".ToStringEnum<Location>() => Location.Europe
 
-OrderType.Location.GetType().IsStringEnum() => true
+Location.GetType().IsStringEnum() => true
 ```
