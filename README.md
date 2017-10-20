@@ -4,12 +4,13 @@
 - a StringEnum is similar to System.Enum with underlying type string
 - a StringEnum value is a reference type, so it's default value is null
 - all StringEnum functionality is contained in a single C# 7 source file supporting .NET Standard 2.0+
-- StringEnums are much faster and easier to use than using member attributes and reflection
-- extremely simple API
+- StringEnums are faster and easier than using member attributes and reflection to support strings
+- simple and intuitive API
 - type-safe
 - tested
 
 #### basic usage
+Use Create(string) to create a StringEnum value associated with one or more unique strings.
 ```csharp
 public sealed class Location : StringEnum<Location>
 {
@@ -21,6 +22,7 @@ Location.Europe.ToString() => "Europe"
 Location.ToStringEnum("Europe") => Location.Europe
 ```
 #### multiple values
+When a StringEnum value is associated with more than one string, the first string represents it's string value.
 ```csharp
 public sealed class Location : StringEnum<Location>
 {
@@ -37,10 +39,13 @@ Location.America.ToString()  => "America"
 Location.America.ToStrings() => new List<string> {"America", "USA"}
 ```
 #### new values
+When ToStringEnum(string) is called with a string that is not associated with any StringEnum, a new StringEnum is created which has IsNewValue set to true. 
 ```csharp
 Location.Undefined.IsNewValue => false
 Location.Europe.IsNewValue    => false
 Location.America.IsNewValue   => false
+
+Location.ToStringEnum("Europe")  => Location.Europe
 
 Location newLocation = Location.ToStringEnum("NEW VALUE");
 newLocation.IsNewValue => true
