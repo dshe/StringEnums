@@ -1,10 +1,10 @@
 ## StringEnums&nbsp;&nbsp;
 
-***A flexible alternative to System.Enum***
+***A simple and flexible alternative to System.Enum***
 - a StringEnum is similar to System.Enum with underlying type string
 - a StringEnum value is a reference type, so it's default value is null
-- all StringEnums functionality is contained in a single C# 7 source file supporting .NET Standard 2.0+
-- much faster and easier than using member attributes and reflection
+- all StringEnum functionality is contained in a single C# 7 source file supporting .NET Standard 2.0+
+- StringEnums are much faster and easier to use than using member attributes and reflection
 - extremely simple API
 - type-safe
 - tested
@@ -40,11 +40,11 @@ Location.America.ToStrings() => new List<string> {"America", "USA"}
 #### new values
 ```csharp
 Location.Undefined.IsNewValue => false
-Location.Europe.IsNewValue => false
-Location.America.IsNewValue => false
+Location.Europe.IsNewValue    => false
+Location.America.IsNewValue   => false
 
-var newValue = OrderType.ToStringEnum("NEW VALUE");
-newValue.IsNewValue => true
+Location newLocation = OrderType.ToStringEnum("NEW VALUE");
+newLocation.IsNewValue => true
 ```
 #### case insensitivity
 ```csharp
