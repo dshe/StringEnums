@@ -25,8 +25,6 @@ OrderType.ToStringEnums() => new List<OrderType> { OrderType.Market, OrderType.L
 ```
 #### multiple values
 ```csharp
-Location.AllowMultipleStringValues = true
-
 public sealed class Location : StringEnum<Location>
 {
      public static readonly Location Undefined = Create("");
@@ -43,10 +41,6 @@ Location.America.ToStrings() => new List<string> {"America", "USA"}
 #### new values
 ```csharp
 Location.Europe.IsNewValue => false
-
-Location.ToStringEnum("NEW VALUE") => ArgumentException("ToStringEnum('NEW VALUE') was not found and
-                                                         this StringEnum does not allow new values.")
-Location.AllowNewEnumValues = true
 
 Location.ToStringEnum("NEW VALUE").IsNewValue => true
 ```
