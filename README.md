@@ -20,8 +20,6 @@ public sealed class OrderType : StringEnum<OrderType>
 OrderType.Market.ToString() => "MARKET"
 
 OrderType.ToStringEnum("MARKET") => OrderType.Market
-
-OrderType.ToStringEnums() => new List<OrderType> { OrderType.Market, OrderType.Limit }
 ```
 #### multiple values
 ```csharp
@@ -36,18 +34,26 @@ Location.ToStringEnum("America")  => Location.America
 Location.ToStringEnum("USA")      => Location.America
 
 Location.America.ToString()  => "America"
+
 Location.America.ToStrings() => new List<string> {"America", "USA"}
 ```
 #### new values
 ```csharp
+Location.Undefined.IsNewValue => false
 Location.Europe.IsNewValue => false
+Location.America.IsNewValue => false
 
-Location.ToStringEnum("NEW VALUE").IsNewValue => true
+var newValue = OrderType.ToStringEnum("NEW VALUE");
+newValue.IsNewValue => true
 ```
 #### case insensitivity
 ```csharp
-Location.SetComparer(StringComparer.OrdinalIgnoreCase)
+Location.SetStringComparer(StringComparer.OrdinalIgnoreCase);
 Location.ToStringEnum("EUROPE") => Location.Europe
+```
+#### all values
+```csharp
+Location.ToStringEnums() => new List<Location> { Location.Undefined, Location.Europe, Location.America }
 ```
 #### extensions
 ```csharp
