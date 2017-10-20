@@ -16,13 +16,26 @@ namespace StringEnums
 {
     public abstract class StringEnum<T> where T : StringEnum<T>, new()
     {
+        static StringEnum() => RuntimeHelpers.RunClassConstructor(typeof(T).TypeHandle);
+
         private static Dictionary<string, T> Dict = new Dictionary<string, T>();
-        public static void SetComparer(StringComparer comparer) => Dict = new Dictionary<string, T>(Dict, comparer);
-        private string Value;
+        public static void SetStringComparer(StringComparer comparer) => Dict = new Dictionary<string, T>(Dict, comparer);
+
+        public static IList<T> ToStringEnums()
+        {
+            lock (Dict)
+                return Dict.Values.Distinct().ToList();
+        }
+
         public bool IsNewValue { get; private set; }
+        private string Value;
         public override string ToString() => Value;
 
-        static StringEnum() => RuntimeHelpers.RunClassConstructor(typeof(T).TypeHandle);
+        public IList<string> ToStrings()
+        {
+            lock (Dict)
+                return Dict.Where(kvp => kvp.Value == this).Select(kvp => kvp.Key).ToList();
+        }
 
         protected static T Create(params string[] strings)
         {
@@ -43,7 +56,7 @@ namespace StringEnums
                 }
                 catch (ArgumentException e)
                 {
-                    throw new ArgumentException($"StringEnum: {typeof(T).Name} has duplicate value: {s}.", e);
+                    throw new ArgumentException($"StringEnum<{typeof(T).Name}>.Create(): string value '{s}' already exists.", e);
                 }
             }
             return t;
@@ -57,7 +70,7 @@ namespace StringEnums
             {
                 if (!Dict.TryGetValue(s, out T t))
                 {
-                    // The enum value was not found so add it and indicate it is a new value.
+                    // No StringEnum was found for this string so create one and indicate it is new.
                     t = new T { Value = s, IsNewValue = true };
                     Dict.Add(s, t);
                 }

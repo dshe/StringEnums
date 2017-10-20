@@ -55,7 +55,7 @@ namespace StringEnums.Tests
         }
 
         [Fact]
-        public void T04_Parse()
+        public void T04_ToStringEnum()
         {
             Assert.Throws<ArgumentNullException>(() => StringEnumA.ToStringEnum(null));
             var e = StringEnumA.ToStringEnum("");

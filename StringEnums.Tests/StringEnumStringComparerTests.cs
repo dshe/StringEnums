@@ -18,7 +18,7 @@ namespace StringEnums.Tests
         [Fact]
         public void T01_Comparer()
         {
-            StringEnumC.SetComparer(StringComparer.OrdinalIgnoreCase);
+            StringEnumC.SetStringComparer(StringComparer.OrdinalIgnoreCase);
             Assert.Equal(StringEnumC.ToStringEnum("SomeNewValue"), StringEnumC.ToStringEnum("SOMENewValue"));
         }
 
