@@ -1,55 +1,63 @@
 ## StringEnums&nbsp;&nbsp;
 
-***A flexible alternative to System.Enum***
+***A simple and flexible alternative to System.Enum***
 - a StringEnum is similar to System.Enum with underlying type string
-- each StringEnum value may be represented by one or more strings
-- a StringEnum is a reference type, so it's default value is null
-- *StringEnums* is contained in a single C# 7 source file supporting .NET Standard 2.0+ with no dependencies
-- faster than using string attributes
+- a StringEnum value is a reference type, so it's default value is null
+- all StringEnum functionality is contained in a single C# 7 source file supporting .NET Standard 2.0+
+- StringEnums are much faster and easier to use than using member attributes and reflection
+- extremely simple API
+- type-safe
 - tested
 
-#### usage
+#### basic usage
 ```csharp
 public sealed class OrderType : StringEnum<OrderType>
 {
      public static readonly OrderType Market = Create("MARKET");
-     public static readonly OrderType Limit = Create("LIMIT");
+     public static readonly OrderType Limit  = Create("LIMIT");
 }
 
-Assert.Equal("MARKET", OrderType.Market.ToString());
+OrderType.Market.ToString() => "MARKET"
 
-Assert.Equal(OrderType.Market, OrderType.Parse("MARKET"));
-Assert.Equal(OrderType.Market, "MARKET".ToStringEnum<OrderType>());
-```
-#### new values
-```csharp
-Assert.False(OrderType.Market.IsNewValue);
-
-var newValue = OrderType.Parse("SOME NEW VALUE");
-Assert.True(newValue.IsNewValue);
+OrderType.ToStringEnum("MARKET") => OrderType.Market
 ```
 #### multiple values
 ```csharp
 public sealed class Location : StringEnum<Location>
 {
      public static readonly Location Undefined = Create("");
-     public static readonly Location Europe = Create("Europe");
-     public static readonly Location America = Create("America", "USA");
+     public static readonly Location Europe    = Create("Europe");
+     public static readonly Location America   = Create("America", "USA");
 }
 
-Assert.Equal(Location.America, Location.Parse("America"));
-Assert.Equal(Location.America, Location.Parse("USA"));
+Location.ToStringEnum("America")  => Location.America
+Location.ToStringEnum("USA")      => Location.America
 
-Assert.Equal("America", Location.America.ToString());
+Location.America.ToString()  => "America"
+
+Location.America.ToStrings() => new List<string> {"America", "USA"}
+```
+#### new values
+```csharp
+Location.Undefined.IsNewValue => false
+Location.Europe.IsNewValue    => false
+Location.America.IsNewValue   => false
+
+Location newLocation = Location.ToStringEnum("NEW VALUE");
+newLocation.IsNewValue => true
 ```
 #### case insensitivity
 ```csharp
-Location.SetComparer(StringComparer.OrdinalIgnoreCase);
-Assert.Equal(Location.Europe, Location.Parse("EUROPE"));
+Location.SetStringComparer(StringComparer.OrdinalIgnoreCase);
+Location.ToStringEnum("EUROPE") => Location.Europe
+```
+#### all values
+```csharp
+Location.ToStringEnums() => new List<Location> { Location.Undefined, Location.Europe, Location.America }
 ```
 #### extensions
 ```csharp
-Assert.True(OrderType.Location.GetType().IsStringEnum());
+"Europe".ToStringEnum<Location>() => Location.Europe
 
-Assert.Equal(OrderType.Europe, "Europe".ToStringEnum<OrderType>());
+Location.GetType().IsStringEnum() => true
 ```
