@@ -11,15 +11,14 @@
 
 #### basic usage
 ```csharp
-public sealed class OrderType : StringEnum<OrderType>
+public sealed class Location : StringEnum<Location>
 {
-     public static readonly OrderType Market = Create("MARKET");
-     public static readonly OrderType Limit  = Create("LIMIT");
+     public static readonly Location Undefined = Create("");
+     public static readonly Location Europe    = Create("Europe");
 }
+Location.Europe.ToString() => "Europe"
 
-OrderType.Market.ToString() => "MARKET"
-
-OrderType.ToStringEnum("MARKET") => OrderType.Market
+Location.ToStringEnum("Europe") => Location.Europe
 ```
 #### multiple values
 ```csharp
