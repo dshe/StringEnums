@@ -4,23 +4,6 @@ using Xunit;
 
 namespace StringEnums.Tests
 {
-    public sealed class OrderType : StringEnum<OrderType>
-    {
-        public static readonly OrderType Market = Create("MARKET");
-        public static readonly OrderType Limit = Create("LIMIT");
-    }
-
-    public class Example1
-    {
-        [Fact]
-        public void Test()
-        {
-            Assert.Equal("MARKET", OrderType.Market.ToString());
-
-            Assert.Equal(OrderType.Market, OrderType.ToStringEnum("MARKET"));
-        }
-    }
-
     public sealed class Location : StringEnum<Location>
     {
         public static readonly Location Undefined = Create("");
@@ -28,10 +11,18 @@ namespace StringEnums.Tests
         public static readonly Location America = Create("America", "USA");
     }
 
-    public class Example2
+    public class Example1
     {
         [Fact]
         public void Test1()
+        {
+            Assert.Equal("Europe", Location.Europe.ToString());
+
+            Assert.Equal(Location.Europe, Location.ToStringEnum("Europe"));
+        }
+
+        [Fact]
+        public void Test2()
         {
             Assert.Equal(Location.America, Location.ToStringEnum("America"));
             Assert.Equal(Location.America, Location.ToStringEnum("USA"));
@@ -42,7 +33,7 @@ namespace StringEnums.Tests
         }
 
         [Fact]
-        public void Test2()
+        public void Test3()
         {
             Assert.False(Location.Undefined.IsNewValue);
             Assert.False(Location.Europe.IsNewValue);
@@ -53,9 +44,9 @@ namespace StringEnums.Tests
         }
 
         [Fact]
-        public void Test3()
+        public void Test4()
         {
-            Assert.Equal(new List<Location> { Location.Undefined, Location.Europe, Location.America }, Location.ToStringEnums());
+            Assert.Equal(new List<Location> { Location.Undefined, Location.Europe, Location.America, Location.ToStringEnum("NEW VALUE") }, Location.ToStringEnums());
 
             Location.SetStringComparer(StringComparer.OrdinalIgnoreCase);
             Assert.Equal(Location.ToStringEnum("SomeNewValue"), Location.ToStringEnum("SOMENewValue"));
