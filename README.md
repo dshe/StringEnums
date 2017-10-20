@@ -43,7 +43,7 @@ Location.Undefined.IsNewValue => false
 Location.Europe.IsNewValue    => false
 Location.America.IsNewValue   => false
 
-Location newLocation = OrderType.ToStringEnum("NEW VALUE");
+Location newLocation = Location.ToStringEnum("NEW VALUE");
 newLocation.IsNewValue => true
 ```
 #### case insensitivity
