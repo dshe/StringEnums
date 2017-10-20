@@ -44,9 +44,11 @@ Location.America.ToStrings() => new List<string> {"America", "USA"}
 ```csharp
 Location.Europe.IsNewValue => false
 
+Location.ToStringEnum("NEW VALUE") => ArgumentException("StringEnum<'Location'>.Create: string value 'NEW VALUE' already exists.")
+
 Location.AllowNewEnumValues = true
 
-Location.ToStringEnum("SOME NEW VALUE").IsNewValue => true
+Location.ToStringEnum("NEW VALUE").IsNewValue => true
 ```
 #### case insensitivity
 ```csharp
