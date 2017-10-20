@@ -4,7 +4,7 @@
 - a StringEnum is similar to System.Enum with underlying type string
 - a StringEnum value is a reference type, so it's default value is null
 - all StringEnums functionality is contained in a single C# 7 source file supporting .NET Standard 2.0+ with no dependencies
-- StringEnums are much faster and easier than using member attributes and reflection
+- much faster and easier than using member attributes and reflection
 - extremely simple API
 - type-safe
 - tested
