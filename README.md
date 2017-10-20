@@ -2,14 +2,14 @@
 
 ***A flexible alternative to System.Enum***
 - a StringEnum is similar to System.Enum with underlying type string
-- each StringEnum value is represented by one or more strings
 - a StringEnum value is a reference type, so it's default value is null
 - all StringEnums functionality is contained in a single C# 7 source file supporting .NET Standard 2.0+ with no dependencies
 - StringEnums are much faster and easier than using member attributes and reflection
 - extremely simple API
+- type-safe
 - tested
 
-#### usage
+#### basic usage
 ```csharp
 public sealed class OrderType : StringEnum<OrderType>
 {
@@ -22,16 +22,11 @@ OrderType.Market.ToString() => "MARKET"
 OrderType.ToStringEnum("MARKET") => OrderType.Market
 
 OrderType.ToStringEnums() => new List<OrderType> { OrderType.Market, OrderType.Limit }
-
-```
-#### new values
-```csharp
-OrderType.Market.IsNewValue => false
-
-OrderType.ToStringEnum("SOME NEW VALUE").IsNewValue => true
 ```
 #### multiple values
 ```csharp
+Location.AllowMultipleStringValues = true
+
 public sealed class Location : StringEnum<Location>
 {
      public static readonly Location Undefined = Create("");
@@ -44,6 +39,14 @@ Location.ToStringEnum("USA")      => Location.America
 
 Location.America.ToString()  => "America"
 Location.America.ToStrings() => new List<string> {"America", "USA"}
+```
+#### new values
+```csharp
+Location.Europe.IsNewValue => false
+
+Location.AllowNewEnumValues = true
+
+Location.ToStringEnum("SOME NEW VALUE").IsNewValue => true
 ```
 #### case insensitivity
 ```csharp
