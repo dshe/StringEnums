@@ -31,10 +31,10 @@ public sealed class Location : StringEnum<Location>
      public static readonly Location America   = Create("America", "USA");
 }
 
-Location.America.ToString()  => "America"
-
 Location.ToStringEnum("America")  => Location.America
 Location.ToStringEnum("USA")      => Location.America
+
+Location.America.ToString()  => "America"
 
 Location.America.ToStrings() => new List<string> {"America", "USA"}
 ```
@@ -44,8 +44,6 @@ When ToStringEnum(string) is called with a string that is not associated with an
 Location.Undefined.IsNewValue => false
 Location.Europe.IsNewValue    => false
 Location.America.IsNewValue   => false
-
-Location.ToStringEnum("Europe")  => Location.Europe
 
 Location newLocation = Location.ToStringEnum("NEW VALUE");
 newLocation.IsNewValue => true
