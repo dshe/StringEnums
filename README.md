@@ -31,10 +31,10 @@ public sealed class Location : StringEnum<Location>
      public static readonly Location America   = Create("America", "USA");
 }
 
+Location.America.ToString()  => "America"
+
 Location.ToStringEnum("America")  => Location.America
 Location.ToStringEnum("USA")      => Location.America
-
-Location.America.ToString()  => "America"
 
 Location.America.ToStrings() => new List<string> {"America", "USA"}
 ```
