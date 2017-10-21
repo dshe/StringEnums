@@ -1,15 +1,17 @@
 ## StringEnums&nbsp;&nbsp;
 
 ***A simple and flexible alternative to System.Enum***
-- similar to System.Enum, with underlying type string
+- similar to System.Enum, but with underlying type string
 - easier and faster than System.Enum with attributes
+- constants support multiple string values
+- constants can be added dynamically
 - contained in a single C# 7 source file supporting .NET Standard 2.0+
 - simple and intuitive API
 - type-safe
 - tested
 
 #### basic usage
-Use Create(string) to create a StringEnum value associated with one or more unique strings.
+Use Create() to create a StringEnum constant associated with one or more unique strings.
 ```csharp
 public sealed class Location : StringEnum<Location>
 {
@@ -22,7 +24,7 @@ Location.Europe.ToString() => "Europe"
 Location.ToStringEnum("Europe") => Location.Europe
 ```
 #### multiple values
-When a StringEnum value is associated with more than one string, the first string represents it's string value.
+When a StringEnum constant is associated with more than one string, the first string represents it's string value.
 ```csharp
 public sealed class Location : StringEnum<Location>
 {
@@ -39,7 +41,7 @@ Location.America.ToString()  => "America"
 Location.America.ToStrings() => new List<string> {"America", "USA"}
 ```
 #### new values
-When ToStringEnum(string) is called with a string that is not associated with any StringEnum, a new StringEnum is created which has IsNewValue set to true. 
+When ToStringEnum(string) is called with a string that is not associated with any StringEnum constant, a new StringEnum constant is created. The new StringEnum has property "IsNewValue" set to true.
 ```csharp
 Location.Undefined.IsNewValue => false
 Location.Europe.IsNewValue    => false
