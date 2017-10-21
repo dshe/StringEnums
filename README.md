@@ -2,9 +2,9 @@
 
 ***A simple and flexible alternative to System.Enum***
 - a StringEnum is similar to System.Enum with underlying type string
+- StringEnums are faster and easier than using primitive enums with string attributes
 - a StringEnum value is a reference type, so it's default value is null
 - all StringEnum functionality is contained in a single C# 7 source file supporting .NET Standard 2.0+
-- StringEnums are faster and easier than using primitive enums with string attributes
 - simple and intuitive API
 - type-safe
 - tested
@@ -17,6 +17,7 @@ public sealed class Location : StringEnum<Location>
      public static readonly Location Undefined = Create("");
      public static readonly Location Europe    = Create("Europe");
 }
+
 Location.Europe.ToString() => "Europe"
 
 Location.ToStringEnum("Europe") => Location.Europe
