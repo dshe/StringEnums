@@ -23,7 +23,7 @@ Location.Europe.ToString() => "Europe"
 
 Location.ToStringEnum("Europe") => Location.Europe
 ```
-#### multiple values
+#### multiple string values
 When a StringEnum constant is associated with more than one string, the first string represents it's string value.
 ```csharp
 public sealed class Location : StringEnum<Location>
@@ -40,7 +40,7 @@ Location.America.ToString()  => "America"
 
 Location.America.ToStrings() => new List<string> {"America", "USA"}
 ```
-#### new values
+#### new constants
 When ToStringEnum(string) is called with a string that is not associated with any StringEnum constant, a new StringEnum constant is created. The new StringEnum has property "IsNewValue" set to true.
 ```csharp
 Location.Undefined.IsNewValue => false
@@ -55,7 +55,7 @@ newLocation.IsNewValue => true
 Location.SetStringComparer(StringComparer.OrdinalIgnoreCase);
 Location.ToStringEnum("EUROPE") => Location.Europe
 ```
-#### all values
+#### all constants
 ```csharp
 Location.ToStringEnums() => new List<Location> { Location.Undefined, Location.Europe, Location.America }
 ```
