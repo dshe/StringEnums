@@ -11,7 +11,7 @@
 - tested
 
 #### basic usage
-Use Create() to create a StringEnum constant associated with one or more unique strings.
+Implement the pattern below to define StringEnum constants associated with one or more unique strings.
 ```csharp
 public sealed class Location : StringEnum<Location>
 {
@@ -21,7 +21,8 @@ public sealed class Location : StringEnum<Location>
 
 Location.Europe.ToString() => "Europe"
 
-Location.ToStringEnum("Europe") => Location.Europe
+Location.ToStringEnum("Europe")    => Location.Europe
+Location.ToStringEnum("not found") => null
 ```
 #### multiple string values
 When a StringEnum constant is associated with more than one string, the first string represents it's string value.
@@ -38,26 +39,28 @@ Location.ToStringEnum("USA")      => Location.America
 
 Location.America.ToString()  => "America"
 
-Location.America.ToStrings() => new List<string> {"America", "USA"}
+Location.America.ToStrings() => new[] {"America", "USA"}
 ```
 #### new constants
-When ToStringEnum(string) is called with a string that is not associated with any StringEnum constant, a new StringEnum constant is created. The new StringEnum has property "IsNewValue" set to true.
+Call Add() to add new constants to the StringEnum.
 ```csharp
-Location.Undefined.IsNewValue => false
-Location.Europe.IsNewValue    => false
-Location.America.IsNewValue   => false
+Location newLocation = Location.Add("New Location");
 
-Location newLocation = Location.ToStringEnum("NEW VALUE");
-newLocation.IsNewValue => true
+Assert.Equal(newLocation, Location.ToStringEnum("New Location"));
+
+Assert.Equal("New Location", newLocation.ToString());
+
+Assert.Equal(new[] { Location.Undefined, Location.Europe, Location.America, newLocation },
+      Location.ToStringEnums());
 ```
-#### case insensitivity
+#### string case
 ```csharp
 Location.SetStringComparer(StringComparer.OrdinalIgnoreCase);
 Location.ToStringEnum("EUROPE") => Location.Europe
 ```
 #### all constants
 ```csharp
-Location.ToStringEnums() => new List<Location> { Location.Undefined, Location.Europe, Location.America }
+Location.ToStringEnums() => new[] { Location.Undefined, Location.Europe, Location.America }
 ```
 #### extensions
 ```csharp
