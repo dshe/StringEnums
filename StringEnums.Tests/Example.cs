@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Xunit;
 
 namespace StringEnums.Tests
@@ -30,7 +29,7 @@ namespace StringEnums.Tests
 
             Assert.Equal("America", Location.America.ToString());
 
-            Assert.Equal(new List<string> { "America", "USA" }, Location.America.ToStrings());
+            Assert.Equal(new[] { "America", "USA" }, Location.America.ToStrings());
         }
 
         [Fact]
@@ -43,7 +42,7 @@ namespace StringEnums.Tests
 
             Assert.Equal("New Location", newLocation.ToString());
 
-            Assert.Equal(new List<Location> { Location.Undefined, Location.Europe, Location.America, newLocation },
+            Assert.Equal(new[] { Location.Undefined, Location.Europe, Location.America, newLocation },
                 Location.ToStringEnums());
         }
 

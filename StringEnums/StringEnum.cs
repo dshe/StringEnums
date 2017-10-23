@@ -27,9 +27,9 @@ namespace StringEnums
                 return Constants.Values.Distinct().ToList();
         }
 
-        private string[] Strings;
+        private string[] Strings = new string[] { };
         public IList<string> ToStrings() => Strings.ToList(); // return a copy
-        public override string ToString() => Strings[0];
+        public override string ToString() => Strings.FirstOrDefault();
 
         protected static T Create(params string[] strings)
         {
