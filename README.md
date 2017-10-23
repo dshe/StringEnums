@@ -44,14 +44,13 @@ Location.America.ToStrings() => new[] {"America", "USA"}
 #### new constants
 Call Add() to add new constants to the StringEnum.
 ```csharp
-Location newLocation = Location.Add("New Location");
+Location.Add("New Location") => Location newLocation
 
-Assert.Equal(newLocation, Location.ToStringEnum("New Location"));
+Location.ToStringEnum("New Location") => newLocation
 
-Assert.Equal("New Location", newLocation.ToString());
+newLocation.ToString() => "New Location"
 
-Assert.Equal(new[] { Location.Undefined, Location.Europe, Location.America, newLocation },
-      Location.ToStringEnums());
+Location.ToStringEnums() => new[] { Location.Undefined, Location.Europe, Location.America, newLocation }
 ```
 #### string case
 ```csharp
