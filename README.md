@@ -49,8 +49,6 @@ Location.Add("New Location") => Location newLocation
 Location.ToStringEnum("New Location") => newLocation
 
 newLocation.ToString() => "New Location"
-
-Location.ToStringEnums() => new[] { Location.Undefined, Location.Europe, Location.America, newLocation }
 ```
 #### string case
 ```csharp
