@@ -1,26 +1,31 @@
 ## StringEnums&nbsp;&nbsp;
 
 ***A simple and flexible alternative to System.Enum***
-- a StringEnum is similar to System.Enum with underlying type string
-- a StringEnum value is a reference type, so it's default value is null
-- all StringEnum functionality is contained in a single C# 7 source file supporting .NET Standard 2.0+
-- StringEnums are much faster and easier to use than using member attributes and reflection
-- extremely simple API
+- similar to System.Enum, but with underlying type string
+- easier and faster than System.Enum with attributes
+- constants support multiple string values
+- constants can be added dynamically
+- contained in a single C# 7 source file supporting .NET Standard 2.0+
+- simple and intuitive API
 - type-safe
 - tested
 
 #### basic usage
+Implement the pattern below to define StringEnum constants associated with one or more unique strings.
 ```csharp
 public sealed class Location : StringEnum<Location>
 {
      public static readonly Location Undefined = Create("");
      public static readonly Location Europe    = Create("Europe");
 }
+
 Location.Europe.ToString() => "Europe"
 
-Location.ToStringEnum("Europe") => Location.Europe
+Location.ToStringEnum("Europe")    => Location.Europe
+Location.ToStringEnum("not found") => null
 ```
-#### multiple values
+#### multiple string values
+When a StringEnum constant is associated with more than one string, the first string represents it's string value.
 ```csharp
 public sealed class Location : StringEnum<Location>
 {
@@ -34,25 +39,27 @@ Location.ToStringEnum("USA")      => Location.America
 
 Location.America.ToString()  => "America"
 
-Location.America.ToStrings() => new List<string> {"America", "USA"}
+Location.America.ToStrings() => new[] {"America", "USA"}
 ```
-#### new values
+#### new constants
+Call Add() to add new constants to the StringEnum.
 ```csharp
-Location.Undefined.IsNewValue => false
-Location.Europe.IsNewValue    => false
-Location.America.IsNewValue   => false
+Location.Add("New Location") => Location newLocation
 
-Location newLocation = Location.ToStringEnum("NEW VALUE");
-newLocation.IsNewValue => true
+Location.ToStringEnum("New Location") => newLocation
+
+newLocation.ToString() => "New Location"
+
+Location.ToStringEnums() => new[] { Location.Undefined, Location.Europe, Location.America, newLocation }
 ```
-#### case insensitivity
+#### string case
 ```csharp
 Location.SetStringComparer(StringComparer.OrdinalIgnoreCase);
 Location.ToStringEnum("EUROPE") => Location.Europe
 ```
-#### all values
+#### all constants
 ```csharp
-Location.ToStringEnums() => new List<Location> { Location.Undefined, Location.Europe, Location.America }
+Location.ToStringEnums() => new[] { Location.Undefined, Location.Europe, Location.America }
 ```
 #### extensions
 ```csharp
