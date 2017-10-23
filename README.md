@@ -39,7 +39,7 @@ Location.ToStringEnum("USA")      => Location.America
 
 Location.America.ToString()  => "America"
 
-Location.America.ToStrings() => new[] {"America", "USA"}
+Location.America.ToStrings() => [] {"America", "USA"}
 ```
 #### new constants
 After the StringEnum has been created, new constants can be added by calling Add().
@@ -58,7 +58,7 @@ Location.ToStringEnum("EUROPE") => Location.Europe
 ```
 #### all constants
 ```csharp
-Location.ToStringEnums() => new[] { Location.Undefined, Location.Europe, Location.America }
+Location.ToStringEnums() => [] { Location.Undefined, Location.Europe, Location.America }
 ```
 #### extensions
 ```csharp
