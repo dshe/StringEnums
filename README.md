@@ -11,7 +11,7 @@
 - tested
 
 #### basic usage
-Implement the pattern below to define StringEnum constants associated with one or more unique strings.
+Implement the following pattern to define StringEnum constants. Each constant is associated with one or more unique strings.
 ```csharp
 public sealed class Location : StringEnum<Location>
 {
@@ -42,7 +42,7 @@ Location.America.ToString()  => "America"
 Location.America.ToStrings() => new[] {"America", "USA"}
 ```
 #### new constants
-Call Add() to add new constants to the StringEnum.
+After the StringEnum has been created, new constants can be added by calling Add().
 ```csharp
 Location.Add("New Location") => Location newLocation
 
