@@ -3,18 +3,17 @@ using System.Linq;
 using Xunit;
 using Xunit.Abstractions;
 using System.Reflection;
-using System.ComponentModel;
 
 namespace StringEnums.Tests
 {
-    public class PrimitiveEnums
+    public class PrimitiveEnumTests
     {
         private enum TestEnum { Two = 2 }
         private static readonly Type Type = typeof(TestEnum);
         private static readonly TypeInfo TypeInfo = Type.GetTypeInfo();
 
         protected readonly Action<string> Write;
-        public PrimitiveEnums(ITestOutputHelper output) => Write = output.WriteLine;
+        public PrimitiveEnumTests(ITestOutputHelper output) => Write = output.WriteLine;
 
         [Fact]
         public void T01_Type()
@@ -99,23 +98,4 @@ namespace StringEnums.Tests
         }
     }
 
-    public static class EnumEx
-    {
-        public static string ToDescription(this Enum value)
-        {
-            var attr = value.GetType()
-                .GetField(value.ToString())
-                .GetCustomAttribute<DescriptionAttribute>(false);
-            if (attr != null)
-                return attr.Description;
-            return value.ToString();
-        }
-        public static T ToEnum<T>(this string str) where T : struct
-            => (T)(typeof(T)
-                .GetTypeInfo()
-                .DeclaredFields
-                .FirstOrDefault(f => f.GetCustomAttribute<DescriptionAttribute>()?.Description == str)
-                ?.GetValue(null)
-                ?? Enum.Parse<T>(str));
-    }
 }

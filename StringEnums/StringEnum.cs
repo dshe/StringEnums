@@ -1,5 +1,5 @@
 ﻿/*
-StringEnums 1.0
+StringEnums 1.1
 https://github.com/dshe/StringEnums
 Copyright(c) 2017 DavidS.
 Licensed under the Apache License 2.0:
@@ -16,65 +16,59 @@ namespace StringEnums
 {
     public abstract class StringEnum<T> where T : StringEnum<T>, new()
     {
-        static StringEnum() => RuntimeHelpers.RunClassConstructor(typeof(T).TypeHandle);
+        static StringEnum() => RuntimeHelpers.RunClassConstructor(typeof(T).TypeHandle); // static ctor
 
-        private static Dictionary<string, T> Dict = new Dictionary<string, T>();
-        public static void SetStringComparer(StringComparer comparer) => Dict = new Dictionary<string, T>(Dict, comparer);
+        private static Dictionary<string, T> Constants = new Dictionary<string, T>();
+        public static void SetStringComparer(StringComparer comparer) => Constants = new Dictionary<string, T>(Constants, comparer);
 
         public static IList<T> ToStringEnums()
         {
-            lock (Dict)
-                return Dict.Values.Distinct().ToList();
+            lock (Constants)
+                return Constants.Values.Distinct().ToList();
         }
 
-        public bool IsNewValue { get; private set; }
-        private string Value;
-        public override string ToString() => Value;
-
-        public IList<string> ToStrings()
-        {
-            lock (Dict)
-                return Dict.Where(kvp => kvp.Value == this).Select(kvp => kvp.Key).ToList();
-        }
+        private string[] Strings;
+        public IList<string> ToStrings() => Strings.ToList(); // return a copy
+        public override string ToString() => Strings[0];
 
         protected static T Create(params string[] strings)
+        {
+            var constant = Add(strings);
+            if (constant == null)
+                throw new ArgumentException($"StringEnum<{typeof(T).Name}>.Create(): string value in {(string.Join(",", strings))} already exists.");
+            return constant;
+        }
+
+        public static T Add(params string[] strings)
         {
             if (strings == null || strings.Length == 0 || strings.Any(x => x == null))
                 throw new ArgumentException(nameof(strings));
 
-            // if more than one string is provided, the first string represents the value of the item.
-            var t = new T { Value = strings[0] };
-
-            foreach (var s in strings)
+            lock (Constants)
             {
-                try
-                {
-                    lock (Dict)
-                    {
-                        Dict.Add(s, t);
-                    }
-                }
-                catch (ArgumentException e)
-                {
-                    throw new ArgumentException($"StringEnum<{typeof(T).Name}>.Create(): string value '{s}' already exists.", e);
-                }
+                foreach (var str in strings)
+                    if (Constants.ContainsKey(str))
+                        return null; // Null indicates that no StringEnum was added because at least one of the string arguments already exists.
+
+                var constant = new T { Strings = strings };
+
+                foreach (var str in strings)
+                    Constants.Add(str, constant);
+
+                return constant;
             }
-            return t;
         }
 
-        public static T ToStringEnum(string s)
+        public static T ToStringEnum(string str)
         {
-            if (s == null)
-                throw new ArgumentNullException(nameof(s));
-            lock (Dict)
+            if (str == null)
+                throw new ArgumentNullException(nameof(str));
+
+            lock (Constants)
             {
-                if (!Dict.TryGetValue(s, out T t))
-                {
-                    // No StringEnum was found for this string so create one and indicate it is new.
-                    t = new T { Value = s, IsNewValue = true };
-                    Dict.Add(s, t);
-                }
-                return t;
+                if (!Constants.TryGetValue(str, out T constant))
+                    return null; // Null indicates that no StringEnum was found for this string.
+                return constant;
             }
         }
     }

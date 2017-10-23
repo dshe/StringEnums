@@ -1,22 +1,23 @@
 ﻿using System;
-using System.ComponentModel;
+using System.Runtime.Serialization;
 using Xunit;
 using Xunit.Abstractions;
+using StringEnums.Tests.Utility;
 
 namespace StringEnums.Tests
 {
-    public class PerformanceTest
+    public class PerformanceTests
     {
-        public enum OrderTypeE
+        public enum PrimitiveEnum
         {
-            [Description("")]
+            [EnumMember(Value = "")]
             Undefined,
-            [Description("MARKET")]
+
+            [EnumMember(Value = "MARKET")]
             Market,
-            [Description("LIMIT")]
+
+            [EnumMember(Value = "LIMIT")]
             Limit,
-            [Description("TRAILING LIMIT")]
-            TrailingLimit
         }
 
         public sealed class OrderType : StringEnum<OrderType>
@@ -24,14 +25,13 @@ namespace StringEnums.Tests
             public static readonly OrderType Undefined = Create("");
             public static readonly OrderType Market = Create("MARKET");
             public static readonly OrderType Limit = Create("LIMIT");
-            public static readonly OrderType TrailingLimit = Create("TRAIL LIMIT");
         }
 
         protected readonly Action<string> Write;
-        public PerformanceTest(ITestOutputHelper output) => Write = output.WriteLine;
+        public PerformanceTests(ITestOutputHelper output) => Write = output.WriteLine;
 
         [Fact]
-        public void Perf()
+        public void Test()
         {
             Write("Performance");
 
@@ -39,13 +39,13 @@ namespace StringEnums.Tests
 
             perf.MeasureRate(() =>
             {
-                Assert.Equal(OrderTypeE.Market, Enum.Parse<OrderTypeE>("MARKET", ignoreCase:true));
+                Assert.Equal(PrimitiveEnum.Market, Enum.Parse<PrimitiveEnum>("Market"));
             }, "Parse primitive enum.");
 
             perf.MeasureRate(() =>
             {
-                Assert.Equal(OrderTypeE.Market, "MARKET".ToEnum<OrderTypeE>());
-            }, "Parse primitive enum with description attribute.");
+                Assert.Equal(PrimitiveEnum.Market, "MARKET".ToEnum<PrimitiveEnum>());
+            }, "Parse primitive enum with EnumMember attribute.");
 
             perf.MeasureRate(() =>
             {
