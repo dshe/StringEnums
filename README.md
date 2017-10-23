@@ -52,6 +52,7 @@ newLocation.ToString() => "New Location"
 ```
 #### string case
 ```csharp
+Location.ToStringEnum("EUROPE") => null
 Location.SetStringComparer(StringComparer.OrdinalIgnoreCase);
 Location.ToStringEnum("EUROPE") => Location.Europe
 ```
