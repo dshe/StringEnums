@@ -1,6 +1,4 @@
-
 ## StringEnums&nbsp;&nbsp;[![release](https://img.shields.io/github/release/dshe/StringEnums.svg)](https://github.com/dshe/StringEnums/releases) [![Build status](https://ci.appveyor.com/api/projects/status/a0qowb0k05hih5xm?svg=true)](https://ci.appveyor.com/project/dshe/stringenums) [![License](https://img.shields.io/badge/license-Apache%202.0-7755BB.svg)](https://opensource.org/licenses/Apache-2.0)
-
 ***A simple and flexible alternative to System.Enum***
 - similar to System.Enum, but with underlying type string
 - easier and faster than System.Enum with attributes
@@ -10,10 +8,6 @@
 - simple and intuitive API
 - type-safe
 - tested
-
-
-&nbsp;&nbsp;
-
 #### basic usage
 Implement the following pattern to define StringEnum constants. Each constant is associated with one or more unique strings.
 ```csharp
