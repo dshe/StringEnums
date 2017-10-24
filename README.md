@@ -8,7 +8,8 @@
 - simple and intuitive API
 - type-safe
 - tested
-#### basic usage
+
+#### Core
 Implement the following pattern to define StringEnum constants. Each constant is associated with one or more unique strings.
 ```csharp
 public sealed class Location : StringEnum<Location>
@@ -22,7 +23,7 @@ Location.Europe.ToString() => "Europe"
 Location.ToStringEnum("Europe")    => Location.Europe
 Location.ToStringEnum("not found") => null
 ```
-#### multiple string values
+#### Multiple String Values
 When a StringEnum constant is associated with more than one string, the first string represents it's string value.
 ```csharp
 public sealed class Location : StringEnum<Location>
@@ -39,7 +40,8 @@ Location.America.ToString()  => "America"
 
 Location.America.ToStrings() => [] {"America", "USA"}
 ```
-#### new constants
+
+#### New Constants
 After the StringEnum has been created, new constants can be added by calling Add().
 ```csharp
 Location.Add("New Location") => Location newLocation
@@ -48,17 +50,18 @@ Location.ToStringEnum("New Location") => newLocation
 
 newLocation.ToString() => "New Location"
 ```
-#### string case
+
+#### String Case
 ```csharp
 Location.ToStringEnum("EUROPE") => null
 Location.SetStringComparer(StringComparer.OrdinalIgnoreCase);
 Location.ToStringEnum("EUROPE") => Location.Europe
 ```
-#### all constants
+#### All Constants
 ```csharp
 Location.ToStringEnums() => [] { Location.Undefined, Location.Europe, Location.America }
 ```
-#### extensions
+#### Extensions
 ```csharp
 "Europe".ToStringEnum<Location>() => Location.Europe
 
