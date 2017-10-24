@@ -1,3 +1,7 @@
+
+## StringEnums&nbsp;&nbsp; [![release](https://img.shields.io/github/release/dshe/StringEnums.svg)](https://github.com/dshe/StringEnums/releases) [![License](https://img.shields.io/badge/license-Apache%202.0-7755BB.svg)](https://opensource.org/licenses/Apache-2.0)
+
+
 ## StringEnums&nbsp;&nbsp;
 
 ***A simple and flexible alternative to System.Enum***
