@@ -4,7 +4,7 @@
 - easier and faster than System.Enum with attributes
 - constants support multiple string values
 - constants can be added dynamically
-- contained in a single C# 7 source file supporting .NET Standard 2.0+
+- contained in a single C# 7 source file supporting .NET Standard 2.0
 - simple and intuitive API
 - type-safe
 - tested
