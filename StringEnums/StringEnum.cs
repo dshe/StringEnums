@@ -1,5 +1,5 @@
 ﻿/*
-StringEnums 1.1
+StringEnums 1.11
 https://github.com/dshe/StringEnums
 Copyright(c) 2017 DavidS.
 Licensed under the Apache License 2.0:
