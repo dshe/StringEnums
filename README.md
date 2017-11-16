@@ -10,7 +10,7 @@
 - tested
 
 #### Core
-Implement the following pattern to define StringEnum constants. Each constant is associated with one or more unique strings.
+Implement the pattern used in the example below to define StringEnum constants. Each constant is associated with one or more unique strings.
 ```csharp
 public sealed class SecurityType : StringEnum<SecurityType>
 {
@@ -44,7 +44,6 @@ SecurityType.ToStringEnum("New SecurityType") => newSecurityType
 
 newSecurityType.ToString() => "New SecurityType"
 ```
-
 #### String Case
 ```csharp
 SecurityType.ToStringEnum("stk") => null
@@ -53,7 +52,8 @@ SecurityType.ToStringEnum("stk") => Location.Stock
 ```
 #### All Constants
 ```csharp
-SecurityType.ToStringEnums() => [] { SecurityType.Undefined, SecurityType.Cash, SecurityType.Stock, SecurityType.Bond, newSecurityType }
+SecurityType.ToStringEnums() =>
+    [] { SecurityType.Undefined, SecurityType.Cash, SecurityType.Stock, SecurityType.Bond, newSecurityType }
 ```
 #### Extensions
 ```csharp
