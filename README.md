@@ -4,7 +4,7 @@
 - constants support **multiple string values**
 - constants can be added **dynamically**
 - contained in a **single** C# 7 source file supporting **.NET Standard 2.0**
-- much faster than System.Enum with attributes
+- faster than System.Enum with attributes
 - simple and intuitive API
 - type-safe
 - tested
@@ -12,58 +12,52 @@
 #### Core
 Implement the following pattern to define StringEnum constants. Each constant is associated with one or more unique strings.
 ```csharp
-public sealed class Location : StringEnum<Location>
+public sealed class SecurityType : StringEnum<SecurityType>
 {
-     public static readonly Location Undefined = Create("");
-     public static readonly Location Europe    = Create("Europe");
+    public static readonly SecurityType Undefined = Create("");
+    public static readonly SecurityType Cash      = Create("C");
+    public static readonly SecurityType Stock     = Create("STK");
+    public static readonly SecurityType Bond      = Create("BOND", "BND");
 }
 
-Location.Europe.ToString() => "Europe"
+SecurityType.Cash.ToString() => "C"
 
-Location.ToStringEnum("Europe")    => Location.Europe
-Location.ToStringEnum("not found") => null
+SecurityType.ToStringEnum("C")         => SecurityType.Cash
+SecurityType.ToStringEnum("not found") => null
 ```
 #### Multiple String Values
 When a StringEnum constant is associated with more than one string, the first string represents it's string value.
 ```csharp
-public sealed class Location : StringEnum<Location>
-{
-     public static readonly Location Undefined = Create("");
-     public static readonly Location Europe    = Create("Europe");
-     public static readonly Location America   = Create("America", "USA");
-}
+SecurityType.ToStringEnum("BOND") => SecurityType.Bond
+SecurityType.ToStringEnum("BND")  => SecurityType.Bond
 
-Location.ToStringEnum("America")  => Location.America
-Location.ToStringEnum("USA")      => Location.America
+SecurityType.Bond.ToString() => "BOND"
 
-Location.America.ToString()  => "America"
-
-Location.America.ToStrings() => [] {"America", "USA"}
+SecurityType.Bond.ToStrings() => [] {"BOND", "BND"}
 ```
-
 #### New Constants
 After the StringEnum has been created, new constants can be added by calling Add().
 ```csharp
-Location.Add("New Location") => Location newLocation
+SecurityType.Add("New SecurityType") => SecurityType newSecurityType
 
-Location.ToStringEnum("New Location") => newLocation
+SecurityType.ToStringEnum("New SecurityType") => newSecurityType
 
-newLocation.ToString() => "New Location"
+newSecurityType.ToString() => "New SecurityType"
 ```
 
 #### String Case
 ```csharp
-Location.ToStringEnum("EUROPE") => null
-Location.SetStringComparer(StringComparer.OrdinalIgnoreCase);
-Location.ToStringEnum("EUROPE") => Location.Europe
+SecurityType.ToStringEnum("stk") => null
+SecurityType.SetStringComparer(StringComparer.OrdinalIgnoreCase);
+SecurityType.ToStringEnum("stk") => Location.Stock
 ```
 #### All Constants
 ```csharp
-Location.ToStringEnums() => [] { Location.Undefined, Location.Europe, Location.America }
+SecurityType.ToStringEnums() => [] { SecurityType.Undefined, SecurityType.Cash, SecurityType.Stock, SecurityType.Bond, newSecurityType }
 ```
 #### Extensions
 ```csharp
-"Europe".ToStringEnum<Location>() => Location.Europe
+"C".ToStringEnum<SecurityType>() => SecurityType.Cash
 
-Location.GetType().IsStringEnum() => true
+SecurityType.Cash.GetType().IsStringEnum() => true
 ```
