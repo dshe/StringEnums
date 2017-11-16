@@ -48,7 +48,7 @@ newSecurityType.ToString() => "New SecurityType"
 ```csharp
 SecurityType.ToStringEnum("stk") => null
 SecurityType.SetStringComparer(StringComparer.OrdinalIgnoreCase);
-SecurityType.ToStringEnum("stk") => Location.Stock
+SecurityType.ToStringEnum("stk") => SecurityType.Stock
 ```
 #### All Constants
 ```csharp
