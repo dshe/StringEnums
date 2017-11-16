@@ -5,60 +5,61 @@ namespace StringEnums.Tests
 {
     public class Example
     {
-        public sealed class Location : StringEnum<Location>
+        public sealed class SecurityType : StringEnum<SecurityType>
         {
-            public static readonly Location Undefined = Create("");
-            public static readonly Location Europe = Create("Europe");
-            public static readonly Location America = Create("America", "USA");
+            public static readonly SecurityType Undefined = Create("");
+            public static readonly SecurityType Cash = Create("C");
+            public static readonly SecurityType Stock = Create("STK");
+            public static readonly SecurityType Bond = Create("BOND", "BND");
         }
 
         [Fact]
         public void T01_BasicUsage()
         {
-            Assert.Equal("Europe", Location.Europe.ToString());
+            Assert.Equal("C", SecurityType.Cash.ToString());
 
-            Assert.Equal(Location.Europe, Location.ToStringEnum("Europe"));
-            Assert.Null(Location.ToStringEnum("not found"));
+            Assert.Equal(SecurityType.Cash, SecurityType.ToStringEnum("C"));
+            Assert.Null(SecurityType.ToStringEnum("not found"));
         }
 
         [Fact]
         public void T02_MultipleStringValues()
         {
-            Assert.Equal(Location.America, Location.ToStringEnum("America"));
-            Assert.Equal(Location.America, Location.ToStringEnum("USA"));
+            Assert.Equal(SecurityType.Bond, SecurityType.ToStringEnum("BOND"));
+            Assert.Equal(SecurityType.Bond, SecurityType.ToStringEnum("BND"));
 
-            Assert.Equal("America", Location.America.ToString());
+            Assert.Equal("BOND", SecurityType.Bond.ToString());
 
-            Assert.Equal(new[] { "America", "USA" }, Location.America.ToStrings());
+            Assert.Equal(new[] { "BOND", "BND" }, SecurityType.Bond.ToStrings());
         }
 
         [Fact]
         public void T03_NewConstants()
         {
-            Location newLocation = Location.Add("New Location");
-            Assert.NotNull(newLocation);
+            SecurityType newSecurityType = SecurityType.Add("New SecurityType");
+            Assert.NotNull(newSecurityType);
 
-            Assert.Equal(newLocation, Location.ToStringEnum("New Location"));
+            Assert.Equal(newSecurityType, SecurityType.ToStringEnum("New SecurityType"));
 
-            Assert.Equal("New Location", newLocation.ToString());
+            Assert.Equal("New SecurityType", newSecurityType.ToString());
 
-            Assert.Equal(new[] { Location.Undefined, Location.Europe, Location.America, newLocation },
-                Location.ToStringEnums());
+            Assert.Equal(new[] { SecurityType.Undefined, SecurityType.Cash, SecurityType.Stock, SecurityType.Bond, newSecurityType },
+                SecurityType.ToStringEnums());
         }
 
         [Fact]
         public void T04_StringCase()
         {
-            Location.SetStringComparer(StringComparer.OrdinalIgnoreCase);
-            Assert.Equal(Location.Europe, Location.ToStringEnum("EUROPE"));
+            SecurityType.SetStringComparer(StringComparer.OrdinalIgnoreCase);
+            Assert.Equal(SecurityType.Stock, SecurityType.ToStringEnum("stk"));
         }
 
         [Fact]
         public void T05_Extensions()
         {
-            Assert.Equal(Location.Europe, "Europe".ToStringEnum<Location>());
+            Assert.Equal(SecurityType.Cash, "C".ToStringEnum<SecurityType>());
 
-            Assert.True(Location.America.GetType().IsStringEnum());
+            Assert.True(SecurityType.Cash.GetType().IsStringEnum());
         }
     }
 }
