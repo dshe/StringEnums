@@ -44,16 +44,16 @@ SecurityType.ToStringEnum("New SecurityType") => newSecurityType
 
 newSecurityType.ToString() => "New SecurityType"
 ```
+#### All Constants
+```csharp
+SecurityType.ToStringEnums() =>
+    [] { SecurityType.Undefined, SecurityType.Cash, SecurityType.Stock, SecurityType.Bond, newSecurityType }
+```
 #### String Case
 ```csharp
 SecurityType.ToStringEnum("stk") => null
 SecurityType.SetStringComparer(StringComparer.OrdinalIgnoreCase);
 SecurityType.ToStringEnum("stk") => SecurityType.Stock
-```
-#### All Constants
-```csharp
-SecurityType.ToStringEnums() =>
-    [] { SecurityType.Undefined, SecurityType.Cash, SecurityType.Stock, SecurityType.Bond, newSecurityType }
 ```
 #### Extensions
 ```csharp
