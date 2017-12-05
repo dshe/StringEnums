@@ -38,7 +38,7 @@ SecurityType.Bond.ToStrings() => [] {"BOND", "BND"}
 #### New Constants
 After the StringEnum has been created, new constants can be added by calling Add().
 ```csharp
-SecurityType.Add("New SecurityType") => SecurityType newSecurityType
+SecurityType newSecurityType = SecurityType.Add("New SecurityType")
 
 SecurityType.ToStringEnum("New SecurityType") => newSecurityType
 
