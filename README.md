@@ -31,14 +31,14 @@ When a StringEnum constant is associated with more than one string, the first st
 SecurityType.ToStringEnum("BOND") => SecurityType.Bond
 SecurityType.ToStringEnum("BND")  => SecurityType.Bond
 
-SecurityType.Bond.ToString() => "BOND"
+SecurityType.Bond.ToString()  => "BOND"
 
 SecurityType.Bond.ToStrings() => [] {"BOND", "BND"}
 ```
 #### New Constants
 After the StringEnum has been created, new constants can be added by calling Add().
 ```csharp
-SecurityType newSecurityType = SecurityType.Add("New SecurityType")
+SecurityType newSecurityType = SecurityType.Add("New SecurityType");
 
 SecurityType.ToStringEnum("New SecurityType") => newSecurityType
 
@@ -52,6 +52,7 @@ SecurityType.ToStringEnums() =>
 #### String Case
 ```csharp
 SecurityType.ToStringEnum("stk") => null
+
 SecurityType.SetStringComparer(StringComparer.OrdinalIgnoreCase);
 SecurityType.ToStringEnum("stk") => SecurityType.Stock
 ```
