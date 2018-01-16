@@ -1,12 +1,4 @@
-﻿/*
-StringEnums 1.11
-https://github.com/dshe/StringEnums
-Copyright(c) 2017 DavidS.
-Licensed under the Apache License 2.0:
-http://www.apache.org/licenses/LICENSE-2.0
-*/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -59,7 +51,7 @@ namespace StringEnums
             }
         }
 
-        public static T ToStringEnum(string str)
+        public static T ToStringEnum(in string str)
         {
             if (str == null)
                 throw new ArgumentNullException(nameof(str));
@@ -75,12 +67,11 @@ namespace StringEnums
 
     public static class StringEnumsEx
     {
-        public static T ToStringEnum<T>(this string str) where T: StringEnum<T>, new()
-            => StringEnum<T>.ToStringEnum(str);
-
-        public static bool IsStringEnum(this Type type) => IsStringEnum(type.GetTypeInfo());
-        public static bool IsStringEnum(this TypeInfo typeInfo)
-            => typeInfo.BaseType.GetTypeInfo().IsGenericType
-              && typeInfo.BaseType.GetGenericTypeDefinition() == typeof(StringEnum<>);
+        public static T ToStringEnum<T>(this string str) where T: StringEnum<T>, new() =>
+            StringEnum<T>.ToStringEnum(str);
+        public static bool IsStringEnum(this Type type) =>
+            IsStringEnum(type.GetTypeInfo());
+        public static bool IsStringEnum(this TypeInfo typeInfo) =>
+            typeInfo.BaseType.GetTypeInfo().IsGenericType && typeInfo.BaseType.GetGenericTypeDefinition() == typeof(StringEnum<>);
     }
 }
