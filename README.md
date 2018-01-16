@@ -10,7 +10,7 @@
 - tested
 
 #### Core
-Implement the following pattern to define StringEnum constants. Each constant is associated with one or more unique strings.
+Implement the pattern used in the example below to define StringEnum constants. Each constant is associated with one or more unique strings.
 ```csharp
 public sealed class SecurityType : StringEnum<SecurityType>
 {
@@ -31,29 +31,30 @@ When a StringEnum constant is associated with more than one string, the first st
 SecurityType.ToStringEnum("BOND") => SecurityType.Bond
 SecurityType.ToStringEnum("BND")  => SecurityType.Bond
 
-SecurityType.Bond.ToString() => "BOND"
+SecurityType.Bond.ToString()  => "BOND"
 
 SecurityType.Bond.ToStrings() => [] {"BOND", "BND"}
 ```
 #### New Constants
 After the StringEnum has been created, new constants can be added by calling Add().
 ```csharp
-SecurityType.Add("New SecurityType") => SecurityType newSecurityType
+SecurityType newSecurityType = SecurityType.Add("New SecurityType");
 
 SecurityType.ToStringEnum("New SecurityType") => newSecurityType
 
 newSecurityType.ToString() => "New SecurityType"
 ```
-
+#### All Constants
+```csharp
+SecurityType.ToStringEnums() =>
+    [] { SecurityType.Undefined, SecurityType.Cash, SecurityType.Stock, SecurityType.Bond, newSecurityType }
+```
 #### String Case
 ```csharp
 SecurityType.ToStringEnum("stk") => null
+
 SecurityType.SetStringComparer(StringComparer.OrdinalIgnoreCase);
-SecurityType.ToStringEnum("stk") => Location.Stock
-```
-#### All Constants
-```csharp
-SecurityType.ToStringEnums() => [] { SecurityType.Undefined, SecurityType.Cash, SecurityType.Stock, SecurityType.Bond, newSecurityType }
+SecurityType.ToStringEnum("stk") => SecurityType.Stock
 ```
 #### Extensions
 ```csharp
