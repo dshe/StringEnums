@@ -6,6 +6,7 @@
 - contained in a **single** C# 7 source file supporting **.NET Standard 2.0**
 - faster than System.Enum with attributes
 - simple and intuitive API
+- no dependencies
 - type-safe
 - tested
 
@@ -19,7 +20,8 @@ public sealed class SecurityType : StringEnum<SecurityType>
     public static readonly SecurityType Stock     = Create("STK");
     public static readonly SecurityType Bond      = Create("BOND", "BND");
 }
-
+```
+```csharp
 SecurityType.Cash.ToString() => "C"
 
 SecurityType.ToStringEnum("C")         => SecurityType.Cash
