@@ -20,16 +20,13 @@ namespace StringEnums
         }
 
         private string[] Strings = new string[] { };
+
         public IList<string> ToStrings() => Strings.ToList(); // return a copy
+
         public override string ToString() => Strings.FirstOrDefault();
 
-        protected static T Create(params string[] strings)
-        {
-            var constant = Add(strings);
-            if (constant == null)
-                throw new ArgumentException($"StringEnum<{typeof(T).Name}>.Create(): string value in {(string.Join(",", strings))} already exists.");
-            return constant;
-        }
+        protected static T Create(params string[] strings) =>
+            Add(strings) ?? throw new ArgumentException($"StringEnum<{typeof(T).Name}>.Create(): string value in {(string.Join(",", strings))} already exists.");
 
         public static T Add(params string[] strings)
         {
@@ -69,8 +66,10 @@ namespace StringEnums
     {
         public static T ToStringEnum<T>(this string str) where T: StringEnum<T>, new() =>
             StringEnum<T>.ToStringEnum(str);
+
         public static bool IsStringEnum(this Type type) =>
             IsStringEnum(type.GetTypeInfo());
+
         public static bool IsStringEnum(this TypeInfo typeInfo) =>
             typeInfo.BaseType.GetTypeInfo().IsGenericType && typeInfo.BaseType.GetGenericTypeDefinition() == typeof(StringEnum<>);
     }
