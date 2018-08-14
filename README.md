@@ -20,7 +20,8 @@ public sealed class SecurityType : StringEnum<SecurityType>
     public static readonly SecurityType Stock     = Create("STK");
     public static readonly SecurityType Bond      = Create("BOND", "BND");
 }
-
+```
+```csharp
 SecurityType.Cash.ToString() => "C"
 
 SecurityType.ToStringEnum("C")         => SecurityType.Cash
