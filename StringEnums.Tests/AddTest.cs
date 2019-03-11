@@ -1,4 +1,7 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
+
+#nullable enable
 
 namespace StringEnums.Tests
 {
@@ -14,7 +17,10 @@ namespace StringEnums.Tests
         {
             const string newString = "new string";
 
-            TestStringEnum newConstant = TestStringEnum.Add(newString);
+            TestStringEnum? newConstant = TestStringEnum.Add(newString);
+            if (newConstant == null)
+                throw new Exception("null");
+
             Assert.NotNull(newConstant);
 
             Assert.Null(TestStringEnum.Add(newString)); // string already exists

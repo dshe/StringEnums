@@ -1,6 +1,8 @@
 ﻿using System;
 using Xunit;
 
+#nullable enable
+
 namespace StringEnums.Tests
 {
     public class Example
@@ -36,8 +38,9 @@ namespace StringEnums.Tests
         [Fact]
         public void T03_NewConstants()
         {
-            SecurityType newSecurityType = SecurityType.Add("New SecurityType");
-            Assert.NotNull(newSecurityType);
+            SecurityType? newSecurityType = SecurityType.Add("New SecurityType");
+            if (newSecurityType == null)
+                throw new Exception("null");
 
             Assert.Equal(newSecurityType, SecurityType.ToStringEnum("New SecurityType"));
 

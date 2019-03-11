@@ -4,6 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
+#nullable enable
+
 namespace StringEnums
 {
     public abstract class StringEnum<T> where T : StringEnum<T>, new()
@@ -28,9 +30,9 @@ namespace StringEnums
         protected static T Create(params string[] strings) =>
             Add(strings) ?? throw new ArgumentException($"StringEnum<{typeof(T).Name}>.Create(): string value in {(string.Join(",", strings))} already exists.");
 
-        public static T Add(params string[] strings)
+        public static T? Add(params string[] strings)
         {
-            if (strings == null || strings.Length == 0 || strings.Any(x => x == null))
+            if (!strings.Any())
                 throw new ArgumentException(nameof(strings));
 
             lock (Constants)
@@ -47,7 +49,7 @@ namespace StringEnums
             }
         }
 
-        public static T ToStringEnum(in string str)
+        public static T? ToStringEnum(in string str)
         {
             if (str == null)
                 throw new ArgumentNullException(nameof(str));
@@ -63,7 +65,7 @@ namespace StringEnums
 
     public static class StringEnumsEx
     {
-        public static T ToStringEnum<T>(this string str) where T: StringEnum<T>, new() =>
+        public static T? ToStringEnum<T>(this string str) where T: StringEnum<T>, new() =>
             StringEnum<T>.ToStringEnum(str);
 
         public static bool IsStringEnum(this Type type) =>

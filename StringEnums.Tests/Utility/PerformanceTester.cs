@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 
+#nullable enable
+
 namespace StringEnums.Tests
 {
     public class Perf

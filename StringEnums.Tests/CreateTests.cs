@@ -1,6 +1,8 @@
 using System;
 using Xunit;
 
+#nullable enable
+
 namespace StringEnums.Tests
 {
     public class CreateTests : StringEnum<CreateTests>
@@ -9,9 +11,7 @@ namespace StringEnums.Tests
         public void T01_CreateExceptions()
         {
             Assert.Throws<ArgumentException>(() => Create());
-            Assert.Throws<ArgumentException>(() => Create(null));
             Assert.Throws<ArgumentException>(() => Create(new string[] { }));
-            Assert.Throws<ArgumentException>(() => Create(new string[] { null }));
             Create(""); // empty string is ok
         }
 

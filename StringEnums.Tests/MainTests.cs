@@ -3,6 +3,8 @@ using System.Reflection;
 using Xunit;
 using Xunit.Abstractions;
 
+#nullable enable
+
 namespace StringEnums.Tests
 {
     public class MainTests
@@ -20,13 +22,10 @@ namespace StringEnums.Tests
         [Fact]
         public void T01_ToStringEnum()
         {
-            Assert.Throws<ArgumentNullException>(() => TestStringEnum.ToStringEnum(null));
-
             Assert.Equal(TestStringEnum.Name1, TestStringEnum.ToStringEnum("1"));
             Assert.Equal(TestStringEnum.Name2, TestStringEnum.ToStringEnum("2"));
             Assert.Equal(TestStringEnum.Name2, TestStringEnum.ToStringEnum("3"));
             Assert.Equal(TestStringEnum.Name4, TestStringEnum.ToStringEnum("4"));
-
             Assert.Null(TestStringEnum.ToStringEnum("not found"));
         }
 

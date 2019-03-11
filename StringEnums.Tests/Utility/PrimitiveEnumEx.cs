@@ -3,6 +3,8 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 
+#nullable enable
+
 namespace StringEnums.Tests.Utility
 {
     public static class PrimitiveEnumEx

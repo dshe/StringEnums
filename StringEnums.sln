@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28705.295
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringEnums", "StringEnums\StringEnums.csproj", "{5CCCCEF5-5D7B-4D7B-955E-27E9CEEA9269}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringEnums", "StringEnums\StringEnums.csproj", "{5CCCCEF5-5D7B-4D7B-955E-27E9CEEA9269}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringEnums.Tests", "StringEnums.Tests\StringEnums.Tests.csproj", "{B9FAD3B4-B31E-4C22-ABA9-BC4AE419CFEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringEnums.Tests", "StringEnums.Tests\StringEnums.Tests.csproj", "{B9FAD3B4-B31E-4C22-ABA9-BC4AE419CFEA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{909EBBD6-5681-4769-B7E5-C1D6300A0E0F}"
+	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
