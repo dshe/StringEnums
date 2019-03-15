@@ -32,6 +32,8 @@ namespace StringEnums
 
         public static T? Add(params string[] strings)
         {
+            if (strings == null)
+                throw new ArgumentNullException(nameof(strings));
             if (!strings.Any())
                 throw new ArgumentException(nameof(strings));
 
@@ -71,7 +73,16 @@ namespace StringEnums
         public static bool IsStringEnum(this Type type) =>
             IsStringEnum(type.GetTypeInfo());
 
-        public static bool IsStringEnum(this TypeInfo typeInfo) =>
-            typeInfo.BaseType.GetTypeInfo().IsGenericType && typeInfo.BaseType.GetGenericTypeDefinition() == typeof(StringEnum<>);
+        public static bool IsStringEnum(this TypeInfo typeInfo)
+        {
+            if (typeInfo == null)
+                throw new ArgumentNullException(nameof(typeInfo));
+            var baseType = typeInfo.BaseType;
+            if (baseType == null)
+                return false;
+            if (!baseType.GetTypeInfo().IsGenericType)
+                return false;
+            return (baseType.GetGenericTypeDefinition() == typeof(StringEnum<>));
+        }
     }
 }
