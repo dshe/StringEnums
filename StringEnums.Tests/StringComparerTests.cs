@@ -19,9 +19,6 @@ namespace StringEnums.Tests
 
             TestStringEnum.SetStringComparer(StringComparer.OrdinalIgnoreCase);
             Assert.Equal(constant, TestStringEnum.ToStringEnum("STRING"));
-
         }
-
     }
-
 }
