@@ -41,7 +41,7 @@ namespace StringEnums
             lock (Constants)
             {
                 if (strings.Where(str => Constants.ContainsKey(str)).Any())
-                    return null; // Null indicates that no StringEnum was added because at least one of the string arguments already exists.
+                    return null; // null indicates that no StringEnum was added because at least one of the string arguments already exists.
 
                 var constant = new T { Strings = strings };
 

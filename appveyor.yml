@@ -14,4 +14,3 @@ artifacts:
 - path: '**\*.nupkg'
 nuget:
   account_feed: true
-  project_feed: true

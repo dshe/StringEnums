@@ -46,13 +46,13 @@ namespace StringEnums.Tests
 
             perf.MeasureRate(() =>
             {
-                Assert.Equal(PrimitiveEnum.Market, "MARKET".ToEnum<PrimitiveEnum>());
-            }, "Parse primitive enum with EnumMember attribute.");
+                Assert.Equal(OrderType.Market, "MARKET".ToStringEnum<OrderType>());
+            }, "Parse StringEnum.");
 
             perf.MeasureRate(() =>
             {
-                Assert.Equal(OrderType.Market, "MARKET".ToStringEnum<OrderType>());
-            }, "Parse StringEnum.");
+                Assert.Equal(PrimitiveEnum.Market, "MARKET".ToEnum<PrimitiveEnum>());
+            }, "Parse primitive enum with EnumMember attribute.");
         }
     }
 }
