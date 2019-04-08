@@ -2,14 +2,16 @@ version: 1.0.{build}
 image: Visual Studio 2019 Preview
 configuration: Release
 before_build:
-- ps: dotnet restore
-after_build:
-- ps: dotnet pack -c release
+- cmd: dotnet --version
+- ps: dotnet restore --verbosity minimal
 build:
   verbosity: minimal
+after_build:
+- ps: dotnet pack -c release
 test_script:
 - ps: dotnet test .\StringEnums.Tests\StringEnums.Tests.csproj
 artifacts:
 - path: '**\*.nupkg'
 nuget:
   account_feed: true
+  project_feed: true
