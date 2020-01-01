@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 
-#nullable enable
+
 
 namespace StringEnums.Tests.Utility
 {
@@ -13,7 +13,7 @@ namespace StringEnums.Tests.Utility
             => value
             .GetType()
             .GetField(value.ToString())
-            .GetCustomAttribute<EnumMemberAttribute>(inherit: false)
+            ?.GetCustomAttribute<EnumMemberAttribute>(inherit: false)
             ?.Value
             ?? value.ToString();
 

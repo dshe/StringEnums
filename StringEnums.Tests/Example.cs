@@ -1,8 +1,6 @@
 ﻿using System;
 using Xunit;
 
-#nullable enable
-
 namespace StringEnums.Tests
 {
     public class Example

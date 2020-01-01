@@ -4,8 +4,6 @@ using Xunit;
 using Xunit.Abstractions;
 using System.Reflection;
 
-#nullable enable
-
 namespace StringEnums.Tests
 {
     public class PrimitiveEnumTests

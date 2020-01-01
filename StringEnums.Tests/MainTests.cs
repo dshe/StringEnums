@@ -3,7 +3,7 @@ using System.Reflection;
 using Xunit;
 using Xunit.Abstractions;
 
-#nullable enable
+
 
 namespace StringEnums.Tests
 {

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-#nullable enable
-
 namespace StringEnums
 {
     public abstract class StringEnum<T> where T : StringEnum<T>, new()
