@@ -3,14 +3,10 @@
 - similar to System.Enum, but with underlying type **string**
 - constants support **multiple string values**
 - constants can be added **dynamically**
-- contained in a single C# 8 source file
 - supports **.NET Standard 2.0**
 - much faster than System.Enum with attributes
 - simple and intuitive API
 - no dependencies
-- type-safe
-- tested
-
 
 Implement the pattern used in the example below to define StringEnum constants. Note that each constant is associated with one or more unique strings:
 ```csharp
