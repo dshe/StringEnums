@@ -3,15 +3,12 @@
 - similar to System.Enum, but with underlying type **string**
 - constants support **multiple string values**
 - constants can be added **dynamically**
-- contained in a **single** C# 8 source file supporting **.NET Standard 2.0**
+- supports **.NET Standard 2.0**
 - much faster than System.Enum with attributes
 - simple and intuitive API
 - no dependencies
-- type-safe
-- tested
 
-#### Core
-Implement the pattern used in the example below to define StringEnum constants. Each constant is associated with one or more unique strings.
+Implement the pattern used in the example below to define StringEnum constants. Note that each constant is associated with one or more unique strings:
 ```csharp
 public sealed class SecurityType : StringEnum<SecurityType>
 {
@@ -28,7 +25,7 @@ SecurityType.ToStringEnum("C")         => SecurityType.Cash
 SecurityType.ToStringEnum("not found") => null
 ```
 #### Multiple String Values
-When a StringEnum constant is associated with more than one string, the first string represents it's string value.
+When a StringEnum constant is associated with more than one string, the first string represents its string value.
 ```csharp
 SecurityType.ToStringEnum("BOND") => SecurityType.Bond
 SecurityType.ToStringEnum("BND")  => SecurityType.Bond
