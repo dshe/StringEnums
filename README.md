@@ -29,7 +29,7 @@ SecurityType.ToStringEnum("C")         => SecurityType.Cash
 SecurityType.ToStringEnum("not found") => null
 ```
 #### Multiple String Values
-When a StringEnum constant is associated with more than one string, the first string represents it's string value.
+When a StringEnum constant is associated with more than one string, the first string represents its string value.
 ```csharp
 SecurityType.ToStringEnum("BOND") => SecurityType.Bond
 SecurityType.ToStringEnum("BND")  => SecurityType.Bond
