@@ -20,11 +20,9 @@ namespace StringEnums
 
         private string[] Strings = new string[] { };
 
-        public IList<string> ToStrings() =>
-            Strings.ToList(); // return a copy
+        public IList<string> ToStrings() => Strings.ToList(); // return a copy
 
-        public override string ToString() =>
-            Strings.FirstOrDefault();
+        public override string ToString() => Strings.FirstOrDefault();
 
         protected static T Create(params string[] strings) =>
             Add(strings) ?? throw new ArgumentException($"StringEnum<{typeof(T).Name}>.Create(): string value in {(string.Join(",", strings))} already exists.");
@@ -60,7 +58,6 @@ namespace StringEnums
                 if (Constants.TryGetValue(str, out T constant))
                     return constant;
                 return null; // null indicates that no StringEnum was found for this string.
-               
             }
         }
     }

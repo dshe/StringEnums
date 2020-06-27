@@ -1,8 +1,6 @@
 ﻿using System;
 using Xunit;
 
-
-
 namespace StringEnums.Tests
 {
     public class StringComparerTests

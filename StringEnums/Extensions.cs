@@ -15,9 +15,11 @@ namespace StringEnums
         {
             if (typeInfo == null)
                 throw new ArgumentNullException(nameof(typeInfo));
+
             var baseType = typeInfo.BaseType;
             if (baseType == null || !baseType.GetTypeInfo().IsGenericType)
                 return false;
+
             return baseType.GetGenericTypeDefinition() == typeof(StringEnum<>);
         }
     }

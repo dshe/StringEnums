@@ -4,8 +4,6 @@ using Xunit;
 using Xunit.Abstractions;
 using StringEnums.Tests.Utility;
 
-
-
 namespace StringEnums.Tests
 {
     public class PerformanceTests

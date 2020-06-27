@@ -3,8 +3,6 @@ using System.Reflection;
 using Xunit;
 using Xunit.Abstractions;
 
-
-
 namespace StringEnums.Tests
 {
     public class MainTests
