@@ -54,7 +54,10 @@ namespace StringEnums.Tests
         [Fact]
         public void T05_Parse() // string name or number to enum
         {
-            Assert.Throws<ArgumentNullException>(() => Enum.Parse(Type, null));
+            string? someNull = null;
+#pragma warning disable CS8604 // Possible null reference argument.
+            Assert.Throws<ArgumentNullException>(() => Enum.Parse(Type, someNull));
+#pragma warning restore CS8604 // Possible null reference argument.
             Assert.Throws<ArgumentException>(() => Enum.Parse(Type, ""));
             Assert.Throws<ArgumentException>(() => Enum.Parse(Type, "invalid"));
 
@@ -74,7 +77,10 @@ namespace StringEnums.Tests
         [Fact]
         public void T06_IsDefined() // object as string name, number or enum
         {
-            Assert.Throws<ArgumentNullException>(() => Enum.IsDefined(Type, null));
+            string? someNull = null;
+#pragma warning disable CS8604 // Possible null reference argument.
+            Assert.Throws<ArgumentNullException>(() => Enum.IsDefined(Type, someNull));
+#pragma warning restore CS8604 // Possible null reference argument.
             Assert.False(Enum.IsDefined(Type, ""));
             Assert.False(Enum.IsDefined(Type, "invalid"));
 
