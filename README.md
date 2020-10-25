@@ -6,7 +6,7 @@
 - supports **.NET Standard 2.0**
 - much faster than System.Enum with attributes
 - simple and intuitive API
-- no dependencies
+- dependencies: none
 
 Implement the pattern used in the example below to define StringEnum constants. Note that each constant is associated with one or more unique strings:
 ```csharp
