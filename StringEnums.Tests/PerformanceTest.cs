@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 using Xunit;
 using Xunit.Abstractions;
 using StringEnums.Tests.Utility;
+using Microsoft.Extensions.Logging;
 
 namespace StringEnums.Tests
 {
@@ -27,15 +28,20 @@ namespace StringEnums.Tests
             public static readonly OrderType Limit = Create("LIMIT");
         }
 
-        protected readonly Action<string> Write;
-        public PerformanceTests(ITestOutputHelper output) => Write = output.WriteLine;
+
+        public readonly ILogger Logger;
+        public PerformanceTests(ITestOutputHelper output)
+        {
+            var loggerFactory = new LoggerFactory().AddMXLogger(output.WriteLine);
+            Logger = loggerFactory.CreateLogger();
+        }
 
         [Fact]
         public void Test()
         {
-            Write("Performance");
+            Logger.LogDebug("Performance");
 
-            var perf = new Perf(Write);
+            var perf = new Perf(x => Logger.LogDebug(x));
 
             perf.MeasureRate(() =>
             {
