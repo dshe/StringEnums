@@ -2,7 +2,7 @@
 ***A simple and flexible alternative to System.Enum***
 - similar to System.Enum, but with underlying type **string**
 - constants support **multiple string values**
-- constants can be added **dynamically**
+- constants may be added **dynamically**
 - supports **.NET Standard 2.0**
 - much faster than System.Enum with attributes
 - simple and intuitive API
@@ -24,7 +24,7 @@ SecurityType.Cash.ToString() => "C"
 SecurityType.ToStringEnum("C")         => SecurityType.Cash
 SecurityType.ToStringEnum("not found") => null
 ```
-#### Multiple String Values
+### Multiple String Values
 When a StringEnum constant is associated with more than one string, the first string represents its string value.
 ```csharp
 SecurityType.ToStringEnum("BOND") => SecurityType.Bond
@@ -34,7 +34,7 @@ SecurityType.Bond.ToString()  => "BOND"
 
 SecurityType.Bond.ToStrings() => [] {"BOND", "BND"}
 ```
-#### New Constants
+### New Constants
 After the StringEnum has been created, new constants can be added by calling Add().
 ```csharp
 SecurityType newSecurityType = SecurityType.Add("New SecurityType");
@@ -43,19 +43,19 @@ SecurityType.ToStringEnum("New SecurityType") => newSecurityType
 
 newSecurityType.ToString() => "New SecurityType"
 ```
-#### All Constants
+### All Constants
 ```csharp
 SecurityType.ToStringEnums() =>
     [] { SecurityType.Undefined, SecurityType.Cash, SecurityType.Stock, SecurityType.Bond, newSecurityType }
 ```
-#### String Case
+### String Case
 ```csharp
 SecurityType.ToStringEnum("stk") => null
 
 SecurityType.SetStringComparer(StringComparer.OrdinalIgnoreCase);
 SecurityType.ToStringEnum("stk") => SecurityType.Stock
 ```
-#### Extensions
+### Extensions
 ```csharp
 "C".ToStringEnum<SecurityType>() => SecurityType.Cash
 
