@@ -12,10 +12,10 @@ Implement the pattern used in the example below to define StringEnum constants. 
 ```csharp
 public sealed class SecurityType : StringEnum<SecurityType>
 {
-    public static readonly SecurityType Undefined = Create("");
-    public static readonly SecurityType Cash      = Create("C");
-    public static readonly SecurityType Stock     = Create("STK");
-    public static readonly SecurityType Bond      = Create("BOND", "BND");
+    public static SecurityType Undefined { get; } = Create("");
+    public static SecurityType Cash      { get; } = Create("C");
+    public static SecurityType Stock     { get; } = Create("STK");
+    public static SecurityType Bond      { get; } = Create("BOND", "BND");
 }
 ```
 ```csharp
