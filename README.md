@@ -1,9 +1,9 @@
-## StringEnums&nbsp;&nbsp; [![Build status](https://ci.appveyor.com/api/projects/status/a0qowb0k05hih5xm?svg=true)](https://ci.appveyor.com/project/dshe/stringenums) [![NuGet](https://img.shields.io/nuget/vpre/StringEnums.svg)](https://www.nuget.org/packages/StringEnums/) [![License](https://img.shields.io/badge/license-Apache%202.0-7755BB.svg)](https://opensource.org/licenses/Apache-2.0)
+# StringEnums&nbsp;&nbsp; [![Build status](https://ci.appveyor.com/api/projects/status/a0qowb0k05hih5xm?svg=true)](https://ci.appveyor.com/project/dshe/stringenums) [![NuGet](https://img.shields.io/nuget/vpre/StringEnums.svg)](https://www.nuget.org/packages/StringEnums/) [![License](https://img.shields.io/badge/license-Apache%202.0-7755BB.svg)](https://opensource.org/licenses/Apache-2.0)
 ***A simple and flexible alternative to System.Enum***
 - similar to System.Enum, but with underlying type **string**
 - constants support **multiple string values**
 - constants may be added **dynamically**
-- supports **.NET Standard 2.0**
+- supports **.NET 5.0**
 - much faster than System.Enum with attributes
 - simple and intuitive API
 - no dependencies
