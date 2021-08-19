@@ -3,7 +3,7 @@
 - similar to System.Enum, but with underlying type **string**
 - constants support **multiple string values**
 - constants may be added **dynamically**
-- supports **.NET 5.0**
+- supports **.NET 5**
 - much faster than System.Enum with attributes
 - simple and intuitive API
 - no dependencies
