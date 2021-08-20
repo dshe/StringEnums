@@ -19,45 +19,49 @@ public sealed class SecurityType : StringEnum<SecurityType>
 }
 ```
 ```csharp
-SecurityType.Cash.ToString() => "C"
+Assert.Equal("C", SecurityType.Cash.ToString());
 
-SecurityType.ToStringEnum("C")         => SecurityType.Cash
-SecurityType.ToStringEnum("not found") => null
+Assert.Equal(SecurityType.Cash, SecurityType.ToStringEnum("C"));
+Assert.Null(SecurityType.ToStringEnum("not found"));
+
 ```
 ### Multiple String Values
 When a StringEnum constant is associated with more than one string, the first string represents its string value.
 ```csharp
-SecurityType.ToStringEnum("BOND") => SecurityType.Bond
-SecurityType.ToStringEnum("BND")  => SecurityType.Bond
+Assert.Equal(SecurityType.Bond, SecurityType.ToStringEnum("BOND"));
+Assert.Equal(SecurityType.Bond, SecurityType.ToStringEnum("BND"));
 
-SecurityType.Bond.ToString()  => "BOND"
+Assert.Equal("BOND", SecurityType.Bond.ToString());
 
-SecurityType.Bond.ToStrings() => [] {"BOND", "BND"}
+Assert.Equal(new[] { "BOND", "BND" }, SecurityType.Bond.ToStrings());
 ```
 ### New Constants
 After the StringEnum has been created, new constants can be added by calling Add().
 ```csharp
-SecurityType newSecurityType = SecurityType.Add("New SecurityType");
+SecurityType? newSecurityType = SecurityType.Add("New SecurityType");
 
-SecurityType.ToStringEnum("New SecurityType") => newSecurityType
+Assert.NotNull(newSecurityType);
 
-newSecurityType.ToString() => "New SecurityType"
+Assert.Equal(newSecurityType, SecurityType.ToStringEnum("New SecurityType"));
+
+Assert.Equal("New SecurityType", newSecurityType.ToString());
 ```
 ### All Constants
 ```csharp
-SecurityType.ToStringEnums() =>
-    [] { SecurityType.Undefined, SecurityType.Cash, SecurityType.Stock, SecurityType.Bond, newSecurityType }
+Assert.Equal(
+    new[] { SecurityType.Undefined, SecurityType.Cash, SecurityType.Stock, SecurityType.Bond, newSecurityType },
+    SecurityType.ToStringEnums());
 ```
 ### String Case
 ```csharp
-SecurityType.ToStringEnum("stk") => null
+Assert.Null(SecurityType.ToStringEnum("stk"));
 
 SecurityType.SetStringComparer(StringComparer.OrdinalIgnoreCase);
-SecurityType.ToStringEnum("stk") => SecurityType.Stock
+Assert.Equal(SecurityType.Stock, SecurityType.ToStringEnum("stk"));
 ```
 ### Extensions
 ```csharp
-"C".ToStringEnum<SecurityType>() => SecurityType.Cash
+Assert.Equal(SecurityType.Cash, "C".ToStringEnum<SecurityType>());
 
-SecurityType.Cash.GetType().IsStringEnum() => true
+Assert.True(SecurityType.Cash.GetType().IsStringEnum());
 ```
