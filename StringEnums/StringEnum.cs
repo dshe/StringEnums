@@ -5,50 +5,34 @@ using System.Runtime.CompilerServices;
 
 namespace StringEnums
 {
-    // class with self-referencing generic constraint
+    // Class with self-referencing generic constraint:
     public abstract class StringEnum<T> where T : StringEnum<T>, new()
     {
-        static StringEnum() // static ctor
-        {
-            RuntimeHelpers.RunClassConstructor(typeof(T).TypeHandle);
-        }
+        // static ctor
+        static StringEnum() => RuntimeHelpers.RunClassConstructor(typeof(T).TypeHandle);
 
         private static Dictionary<string, T> Constants = new();
-        public static void SetStringComparer(StringComparer comparer)
-        {
-            Constants = new Dictionary<string, T>(Constants, comparer);
-        }
+        public static void SetStringComparer(StringComparer comparer) => Constants = new Dictionary<string, T>(Constants, comparer);
 
-        public static IList<T> ToStringEnums()
+        public static List<T> ToStringEnums()
         {
             lock (Constants)
                 return Constants.Values.Distinct().ToList();
         }
 
         private string[] Strings = Array.Empty<string>();
+        public List<string> ToStrings() => Strings.ToList(); // return a copy
+        public override string ToString() => Strings.FirstOrDefault("");
 
-        public IList<string> ToStrings()
-        {
-            return Strings.ToList(); // return a copy
-        }
-
-        public override string ToString()
-        {
-            return Strings.FirstOrDefault() ?? "";
-        }
-
-        protected static T Create(params string[] strings)
-        {
-            return Add(strings) ?? 
-                throw new ArgumentException($"StringEnum<{typeof(T).Name}>.Create(): string value in {(string.Join(",", strings))} already exists.");
-        }
+        protected static T Create(params string[] strings) =>
+            Add(strings) ?? throw new ArgumentException($"StringEnum<{typeof(T).Name}>.Create(): string value in {(string.Join(",", strings))} already exists.");
 
         public static T? Add(params string[] strings)
         {
             if (strings == null)
                 throw new ArgumentNullException(nameof(strings));
             if (!strings.Any())
-                throw new ArgumentException(nameof(strings));
+                throw new ArgumentException("No strings!", nameof(strings));
 
             lock (Constants)
             {
@@ -57,7 +41,7 @@ namespace StringEnums
 
                 T constant = new() { Strings = strings };
 
-                foreach (var str in strings)
+                foreach (string str in strings)
                     Constants.Add(str, constant);
 
                 return constant;

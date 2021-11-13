@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 
-
-
 namespace StringEnums.Tests
 {
     public class Perf
@@ -13,8 +11,8 @@ namespace StringEnums.Tests
 
         private static double MeasureTicks(Action action)
         {
-            var counter = 1L;
-            var sw = new Stopwatch();
+            long counter = 1L;
+            Stopwatch sw = new();
             action(); // prime
             sw.Start();
             do
@@ -28,14 +26,14 @@ namespace StringEnums.Tests
 
         public void MeasureRate(Action action, string label)
         {
-            var frequency = Stopwatch.Frequency / MeasureTicks(action);
+            double frequency = Stopwatch.Frequency / MeasureTicks(action);
             write($"{frequency,11:####,###} {label}");
         }
 
         public void MeasureDuration(Action action, long iterations, string label)
         {
-            var ticks = (long)(MeasureTicks(action) * iterations);
-            var ts = TimeSpan.FromTicks(ticks);
+            long ticks = (long)(MeasureTicks(action) * iterations);
+            TimeSpan ts = TimeSpan.FromTicks(ticks);
             write($"{ts} {label}");
         }
 

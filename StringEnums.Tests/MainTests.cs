@@ -9,9 +9,9 @@ namespace StringEnums.Tests
     {
         public sealed class TestStringEnum : StringEnum<TestStringEnum>
         {
-            public static readonly TestStringEnum Name1 = Create("1");
-            public static readonly TestStringEnum Name2 = Create("2", "3");
-            public static readonly TestStringEnum Name4 = Create("4");
+            public static TestStringEnum Name1 { get; } = Create("1");
+            public static TestStringEnum Name2 { get; } = Create("2", "3");
+            public static TestStringEnum Name4 { get; } = Create("4");
         }
 
         protected readonly Action<string> Write;

@@ -7,10 +7,10 @@ namespace StringEnums.Tests
     {
         public sealed class SecurityType : StringEnum<SecurityType>
         {
-            public static readonly SecurityType Undefined = Create("");
-            public static readonly SecurityType Cash = Create("C");
-            public static readonly SecurityType Stock = Create("STK");
-            public static readonly SecurityType Bond = Create("BOND", "BND");
+            public static SecurityType Undefined { get; } = Create("");
+            public static SecurityType Cash { get; } = Create("C");
+            public static SecurityType Stock { get; } = Create("STK");
+            public static SecurityType Bond { get; } = Create("BOND", "BND");
         }
 
         [Fact]
@@ -37,12 +37,11 @@ namespace StringEnums.Tests
         public void T03_NewConstants()
         {
             SecurityType? newSecurityType = SecurityType.Add("New SecurityType");
-            if (newSecurityType == null)
-                throw new Exception("null");
+            Assert.NotNull(newSecurityType);
 
             Assert.Equal(newSecurityType, SecurityType.ToStringEnum("New SecurityType"));
 
-            Assert.Equal("New SecurityType", newSecurityType.ToString());
+            Assert.Equal("New SecurityType", newSecurityType!.ToString());
 
             Assert.Equal(new[] { SecurityType.Undefined, SecurityType.Cash, SecurityType.Stock, SecurityType.Bond, newSecurityType },
                 SecurityType.ToStringEnums());
@@ -51,6 +50,8 @@ namespace StringEnums.Tests
         [Fact]
         public void T04_StringCase()
         {
+            Assert.Null(SecurityType.ToStringEnum("stk"));
+
             SecurityType.SetStringComparer(StringComparer.OrdinalIgnoreCase);
             Assert.Equal(SecurityType.Stock, SecurityType.ToStringEnum("stk"));
         }

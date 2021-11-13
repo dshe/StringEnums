@@ -10,7 +10,7 @@ namespace StringEnums.Tests
         [Fact]
         public void T00_Comparer()
         {
-            var constant = TestStringEnum.Add("string");
+            TestStringEnum? constant = TestStringEnum.Add("string");
 
             Assert.Equal(constant, TestStringEnum.ToStringEnum("string"));
             Assert.Null(TestStringEnum.ToStringEnum("STRING"));

@@ -9,14 +9,14 @@ namespace StringEnums.Tests
         public void T01_CreateExceptions()
         {
             Assert.Throws<ArgumentException>(() => Create());
-            Assert.Throws<ArgumentException>(() => Create(new string[] { }));
+            Assert.Throws<ArgumentException>(() => Create(Array.Empty<string>()));
             Create(""); // empty string is ok
         }
 
         [Fact]
         public void T02_CreateOne()
         {
-            var constant = Create("A");
+            CreateTests constant = Create("A");
             Assert.Equal("A", constant.ToString());
             Assert.Equal(constant, ToStringEnum("A"));
         }
@@ -24,7 +24,7 @@ namespace StringEnums.Tests
         [Fact]
         public void T03_CreateMultiple()
         {
-            var constant = Create("B", "C"); // multiple
+            CreateTests constant = Create("B", "C"); // multiple
             Assert.Equal("B", constant.ToString()); // the first string represents the value
             Assert.Equal(constant, ToStringEnum("B"));
             Assert.Equal(constant, ToStringEnum("C"));

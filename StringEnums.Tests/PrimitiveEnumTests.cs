@@ -3,6 +3,7 @@ using System.Linq;
 using Xunit;
 using Xunit.Abstractions;
 using System.Reflection;
+using System.Collections.Generic;
 
 namespace StringEnums.Tests
 {
@@ -98,7 +99,7 @@ namespace StringEnums.Tests
         [Fact]
         public void T07_Get_Values() // number to enum
         {
-            var values = Enum.GetValues(Type).OfType<TestEnum>().ToList();
+            List<TestEnum> values = Enum.GetValues(Type).OfType<TestEnum>().ToList();
             Assert.Equal(values, TypeInfo.GetEnumValues().OfType<TestEnum>().ToList());
             Assert.Equal(TestEnum.Two, values.Single());
         }

@@ -28,12 +28,12 @@ namespace StringEnums.Tests
             public static readonly OrderType Limit = Create("LIMIT");
         }
 
-
         public readonly ILogger Logger;
         public PerformanceTests(ITestOutputHelper output)
         {
-            var loggerFactory = new LoggerFactory().AddMXLogger(output.WriteLine);
-            Logger = loggerFactory.CreateLogger();
+            Logger = new LoggerFactory()
+                .AddMXLogger(output.WriteLine)
+                .CreateLogger();
         }
 
         [Fact]
@@ -41,7 +41,7 @@ namespace StringEnums.Tests
         {
             Logger.LogDebug("Performance");
 
-            var perf = new Perf(x => Logger.LogDebug(x));
+            Perf perf = new(x => Logger.LogDebug("{Info}", x));
 
             perf.MeasureRate(() =>
             {
