@@ -3,7 +3,7 @@
 - similar to System.Enum, but with underlying type **string**
 - constants support **multiple string values**
 - constants may be added **dynamically**
-- supports **.NET 5.0**
+- supports **.NET 5**
 - much faster than System.Enum with attributes
 - simple and intuitive API
 - no dependencies
@@ -12,52 +12,56 @@ Implement the pattern used in the example below to define StringEnum constants. 
 ```csharp
 public sealed class SecurityType : StringEnum<SecurityType>
 {
-    public static readonly SecurityType Undefined = Create("");
-    public static readonly SecurityType Cash      = Create("C");
-    public static readonly SecurityType Stock     = Create("STK");
-    public static readonly SecurityType Bond      = Create("BOND", "BND");
+    public static SecurityType Undefined { get; } = Create("");
+    public static SecurityType Cash      { get; } = Create("C");
+    public static SecurityType Stock     { get; } = Create("STK");
+    public static SecurityType Bond      { get; } = Create("BOND", "BND");
 }
 ```
 ```csharp
-SecurityType.Cash.ToString() => "C"
+Assert.Equal("C", SecurityType.Cash.ToString());
 
-SecurityType.ToStringEnum("C")         => SecurityType.Cash
-SecurityType.ToStringEnum("not found") => null
+Assert.Equal(SecurityType.Cash, SecurityType.ToStringEnum("C"));
+Assert.Null(SecurityType.ToStringEnum("not found"));
+
 ```
 ### Multiple String Values
 When a StringEnum constant is associated with more than one string, the first string represents its string value.
 ```csharp
-SecurityType.ToStringEnum("BOND") => SecurityType.Bond
-SecurityType.ToStringEnum("BND")  => SecurityType.Bond
+Assert.Equal(SecurityType.Bond, SecurityType.ToStringEnum("BOND"));
+Assert.Equal(SecurityType.Bond, SecurityType.ToStringEnum("BND"));
 
-SecurityType.Bond.ToString()  => "BOND"
+Assert.Equal("BOND", SecurityType.Bond.ToString());
 
-SecurityType.Bond.ToStrings() => [] {"BOND", "BND"}
+Assert.Equal(new[] { "BOND", "BND" }, SecurityType.Bond.ToStrings());
 ```
 ### New Constants
 After the StringEnum has been created, new constants can be added by calling Add().
 ```csharp
-SecurityType newSecurityType = SecurityType.Add("New SecurityType");
+SecurityType? newSecurityType = SecurityType.Add("New SecurityType");
 
-SecurityType.ToStringEnum("New SecurityType") => newSecurityType
+Assert.NotNull(newSecurityType);
 
-newSecurityType.ToString() => "New SecurityType"
+Assert.Equal(newSecurityType, SecurityType.ToStringEnum("New SecurityType"));
+
+Assert.Equal("New SecurityType", newSecurityType.ToString());
 ```
 ### All Constants
 ```csharp
-SecurityType.ToStringEnums() =>
-    [] { SecurityType.Undefined, SecurityType.Cash, SecurityType.Stock, SecurityType.Bond, newSecurityType }
+Assert.Equal(
+    new[] { SecurityType.Undefined, SecurityType.Cash, SecurityType.Stock, SecurityType.Bond, newSecurityType },
+    SecurityType.ToStringEnums());
 ```
 ### String Case
 ```csharp
-SecurityType.ToStringEnum("stk") => null
+Assert.Null(SecurityType.ToStringEnum("stk"));
 
 SecurityType.SetStringComparer(StringComparer.OrdinalIgnoreCase);
-SecurityType.ToStringEnum("stk") => SecurityType.Stock
+Assert.Equal(SecurityType.Stock, SecurityType.ToStringEnum("stk"));
 ```
 ### Extensions
 ```csharp
-"C".ToStringEnum<SecurityType>() => SecurityType.Cash
+Assert.Equal(SecurityType.Cash, "C".ToStringEnum<SecurityType>());
 
-SecurityType.Cash.GetType().IsStringEnum() => true
+Assert.True(SecurityType.Cash.GetType().IsStringEnum());
 ```
