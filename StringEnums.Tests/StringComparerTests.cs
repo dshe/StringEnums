@@ -1,22 +1,21 @@
 ﻿using System;
 using Xunit;
 
-namespace StringEnums.Tests
+namespace StringEnums.Tests;
+
+public class StringComparerTests
 {
-    public class StringComparerTests
+    public sealed class TestStringEnum : StringEnum<TestStringEnum> { }
+
+    [Fact]
+    public void T00_Comparer()
     {
-        public sealed class TestStringEnum : StringEnum<TestStringEnum> { }
+        TestStringEnum? constant = TestStringEnum.Add("string");
 
-        [Fact]
-        public void T00_Comparer()
-        {
-            TestStringEnum? constant = TestStringEnum.Add("string");
+        Assert.Equal(constant, TestStringEnum.ToStringEnum("string"));
+        Assert.Null(TestStringEnum.ToStringEnum("STRING"));
 
-            Assert.Equal(constant, TestStringEnum.ToStringEnum("string"));
-            Assert.Null(TestStringEnum.ToStringEnum("STRING"));
-
-            TestStringEnum.SetStringComparer(StringComparer.OrdinalIgnoreCase);
-            Assert.Equal(constant, TestStringEnum.ToStringEnum("STRING"));
-        }
+        TestStringEnum.SetStringComparer(StringComparer.OrdinalIgnoreCase);
+        Assert.Equal(constant, TestStringEnum.ToStringEnum("STRING"));
     }
 }
