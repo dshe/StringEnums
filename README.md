@@ -4,8 +4,9 @@
 - similar to System.Enum, but with underlying type **string**
 - constants support **multiple string values**
 - constants may be added **dynamically**
-- faster than System.Enum with attributes
+- much faster than System.Enum with attributes
 - simple and intuitive API
+- CLS compliant
 - tested
 - no dependencies
 
