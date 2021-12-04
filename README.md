@@ -2,7 +2,7 @@
 ***A simple and flexible alternative to System.Enum***
 - **.NET 6.0** library
 - similar to System.Enum, but with underlying type **string**
-- constants arre associated with **one or more string values**
+- constants are associated with **one or more string values**
 - string values may be added **dynamically**
 - much faster than System.Enum with attributes
 - simple and intuitive API
