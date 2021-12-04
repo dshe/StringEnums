@@ -2,12 +2,12 @@
 ***A simple and flexible alternative to System.Enum***
 - **.NET 6.0** library
 - similar to System.Enum, but with underlying type **string**
-- constants support **multiple string values**
-- constants may be added **dynamically**
+- constants arre associated with **one or more string values**
+- string values may be added **dynamically**
 - much faster than System.Enum with attributes
 - simple and intuitive API
-- CLS compliant
 - tested
+- CLS compliant
 - no dependencies
 
 Implement the pattern used in the example below to define StringEnum constants. Note that each constant is associated with one or more unique strings:
