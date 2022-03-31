@@ -1,12 +1,13 @@
-# StringEnums&nbsp;&nbsp; [![Build status](https://ci.appveyor.com/api/projects/status/a0qowb0k05hih5xm?svg=true)](https://ci.appveyor.com/project/dshe/stringenums) [![NuGet](https://img.shields.io/nuget/vpre/StringEnums.svg)](https://www.nuget.org/packages/StringEnums/) [![License](https://img.shields.io/badge/license-Apache%202.0-7755BB.svg)](https://opensource.org/licenses/Apache-2.0)
+# StringEnums&nbsp;&nbsp; [![Build status](https://ci.appveyor.com/api/projects/status/a0qowb0k05hih5xm?svg=true)](https://ci.appveyor.com/project/dshe/stringenums) [![NuGet](https://img.shields.io/nuget/vpre/StringEnums.svg)](https://www.nuget.org/packages/StringEnums/) [![NuGet](https://img.shields.io/nuget/dt/StringEnums?color=orange)](https://www.nuget.org/packages/StringEnums/) [![License](https://img.shields.io/badge/license-Apache%202.0-7755BB.svg)](https://opensource.org/licenses/Apache-2.0)
 ***A simple and flexible alternative to System.Enum***
 - **.NET 6.0** library
 - similar to System.Enum, but with underlying type **string**
-- constants support **multiple string values**
-- constants may be added **dynamically**
-- faster than System.Enum with attributes
+- enum constants are associated with **one or more string values**
+- string values may be added **dynamically**
+- much faster than System.Enum with attributes
 - simple and intuitive API
 - tested
+- CLS compliant
 - no dependencies
 
 Implement the pattern used in the example below to define StringEnum constants. Note that each constant is associated with one or more unique strings:
