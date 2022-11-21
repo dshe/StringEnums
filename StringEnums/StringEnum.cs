@@ -4,7 +4,9 @@ using System.Runtime.CompilerServices;
 namespace StringEnums;
 
 // Class with self-referencing generic constraint:
+#pragma warning disable CA1711
 public abstract class StringEnum<T> where T : StringEnum<T>, new()
+#pragma warning restore CA1711
 {
     // static ctor
     static StringEnum() => RuntimeHelpers.RunClassConstructor(typeof(T).TypeHandle);
