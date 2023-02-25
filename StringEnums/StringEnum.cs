@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+
 namespace StringEnums;
 
 // Class with self-referencing generic constraint:
 #pragma warning disable CA1711
+
 public abstract class StringEnum<T> where T : StringEnum<T>, new()
 #pragma warning restore CA1711
 {
@@ -12,12 +14,15 @@ public abstract class StringEnum<T> where T : StringEnum<T>, new()
     static StringEnum() => RuntimeHelpers.RunClassConstructor(typeof(T).TypeHandle);
 
     private static Dictionary<string, T> Constants = new();
-    public static void SetStringComparer(StringComparer comparer) => Constants = new Dictionary<string, T>(Constants, comparer);
+    public static void SetStringComparer(StringComparer comparer) =>
+        Constants = new Dictionary<string, T>(Constants, comparer);
 
     public static IList<T> ToStringEnums()
     {
         lock (Constants)
+        {
             return Constants.Values.Distinct().ToList();
+        }
     }
 
     private string[] Strings = Array.Empty<string>();
@@ -36,8 +41,9 @@ public abstract class StringEnum<T> where T : StringEnum<T>, new()
 
         lock (Constants)
         {
-            if (strings.Where(str => Constants.ContainsKey(str)).Any())
-                return null; // null indicates that no StringEnum was added because at least one of the string arguments already exists.
+            if (strings.Any(str => Constants.ContainsKey(str)))
+                return null;
+            // null indicates that no StringEnum was added because at least one of the string arguments already exists.
 
             T constant = new() { Strings = strings };
 
@@ -56,7 +62,8 @@ public abstract class StringEnum<T> where T : StringEnum<T>, new()
         {
             if (Constants.TryGetValue(str, out T? constant))
                 return constant;
-            return null; // null indicates that no StringEnum was found for this string.
+            return null;
+            // null indicates that no StringEnum was found for this string.
         }
     }
 }

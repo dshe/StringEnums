@@ -1,14 +1,12 @@
-﻿using System;
-using System.Runtime.Serialization;
-using Xunit;
-using Xunit.Abstractions;
-using StringEnums.Tests.Utility;
+﻿using System.Runtime.Serialization;
 using Microsoft.Extensions.Logging;
 
 namespace StringEnums.Tests;
 
-public class PerformanceTests
+public class PerformanceTests : TestBase
 {
+    public PerformanceTests(ITestOutputHelper output) : base(output) { }
+
     public enum PrimitiveEnum
     {
         [EnumMember(Value = "")]
@@ -26,14 +24,6 @@ public class PerformanceTests
         public static readonly OrderType Undefined = Create("");
         public static readonly OrderType Market = Create("MARKET");
         public static readonly OrderType Limit = Create("LIMIT");
-    }
-
-    public readonly ILogger Logger;
-    public PerformanceTests(ITestOutputHelper output)
-    {
-        Logger = new LoggerFactory()
-            .AddMXLogger(output.WriteLine)
-            .CreateLogger();
     }
 
     [Fact]

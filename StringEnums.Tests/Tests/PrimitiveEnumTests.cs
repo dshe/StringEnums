@@ -1,20 +1,16 @@
-﻿using System;
-using System.Linq;
-using Xunit;
-using Xunit.Abstractions;
+﻿using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
 
 namespace StringEnums.Tests;
 
-public class PrimitiveEnumTests
+public class PrimitiveEnumTests : TestBase
 {
+    public PrimitiveEnumTests(ITestOutputHelper output) : base(output) { }
+
     private enum TestEnum { Two = 2 }
     private static readonly Type Type = typeof(TestEnum);
     private static readonly TypeInfo TypeInfo = Type.GetTypeInfo();
-
-    protected readonly Action<string> Write;
-    public PrimitiveEnumTests(ITestOutputHelper output) => Write = output.WriteLine;
 
     [Fact]
     public void T01_Type()

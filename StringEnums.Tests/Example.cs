@@ -1,9 +1,9 @@
-﻿using System;
-using Xunit;
-namespace StringEnums.Tests;
+﻿namespace StringEnums.Tests;
 
-public class Example
+public class Example : TestBase
 {
+    public Example(ITestOutputHelper output) : base(output) { }
+
     public sealed class SecurityType : StringEnum<SecurityType>
     {
         public static SecurityType Undefined { get; } = Create("");

@@ -1,10 +1,9 @@
-﻿using System;
-using Xunit;
+﻿namespace StringEnums.Tests;
 
-namespace StringEnums.Tests;
-
-public class StringComparerTests
+public class StringComparerTests : TestBase
 {
+    public StringComparerTests(ITestOutputHelper output) : base(output) { }
+
     public sealed class TestStringEnum : StringEnum<TestStringEnum> { }
 
     [Fact]

@@ -1,5 +1,3 @@
-using System;
-using Xunit;
 namespace StringEnums.Tests;
 
 public class CreateTests : StringEnum<CreateTests>

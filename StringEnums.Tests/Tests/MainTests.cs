@@ -1,21 +1,17 @@
-﻿using System;
-using System.Reflection;
-using Xunit;
-using Xunit.Abstractions;
+﻿using System.Reflection;
 
 namespace StringEnums.Tests;
 
-public class MainTests
+public class MainTests : TestBase
 {
+    public MainTests(ITestOutputHelper output) : base(output) { }
+
     public sealed class TestStringEnum : StringEnum<TestStringEnum>
     {
         public static TestStringEnum Name1 { get; } = Create("1");
         public static TestStringEnum Name2 { get; } = Create("2", "3");
         public static TestStringEnum Name4 { get; } = Create("4");
     }
-
-    protected readonly Action<string> Write;
-    public MainTests(ITestOutputHelper output) => Write = output.WriteLine;
 
     [Fact]
     public void T01_ToStringEnum()
@@ -58,5 +54,4 @@ public class MainTests
 
         Assert.Equal(TestStringEnum.Name1, "1".ToStringEnum<TestStringEnum>());
     }
-
 }

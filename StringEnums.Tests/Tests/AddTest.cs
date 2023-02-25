@@ -1,9 +1,9 @@
-﻿using System;
-using Xunit;
-namespace StringEnums.Tests;
+﻿namespace StringEnums.Tests;
 
-public class AddTests
+public class AddTests : TestBase
 {
+    public AddTests(ITestOutputHelper output) : base(output) { }
+
     public sealed class TestStringEnum : StringEnum<TestStringEnum>
     {
         public static readonly TestStringEnum Name1 = Create("first");
