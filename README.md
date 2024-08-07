@@ -35,7 +35,7 @@ Assert.Equal(SecurityType.Bond, SecurityType.ToStringEnum("BND"));
 
 Assert.Equal("BOND", SecurityType.Bond.ToString());
 
-Assert.Equal(new[] { "BOND", "BND" }, SecurityType.Bond.ToStrings());
+Assert.Equal(["BOND", "BND"], SecurityType.Bond.ToStrings());
 ```
 ### New Constants
 After the StringEnum has been created, new constants can be added by calling Add().
@@ -51,7 +51,7 @@ Assert.Equal("New SecurityType", newSecurityType.ToString());
 ### All Constants
 ```csharp
 Assert.Equal(
-    new[] { SecurityType.Undefined, SecurityType.Cash, SecurityType.Stock, SecurityType.Bond, newSecurityType },
+    [SecurityType.Undefined, SecurityType.Cash, SecurityType.Stock, SecurityType.Bond, newSecurityType],
     SecurityType.ToStringEnums());
 ```
 ### String Case
