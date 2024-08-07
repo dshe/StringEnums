@@ -2,19 +2,13 @@
 
 namespace StringEnums.Tests;
 
-public abstract class TestBase
+public abstract class TestBase(ITestOutputHelper output, LogLevel logLevel = LogLevel.Trace)
 {
-    protected readonly ILogger Logger;
-    protected readonly Action<string> Write;
-
-    protected TestBase(ITestOutputHelper output, LogLevel logLevel = LogLevel.Trace)
-    {
-        Logger = LoggerFactory
+    protected readonly ILogger Logger = LoggerFactory
             .Create(builder => builder
                 .AddMXLogger(output.WriteLine)
                 .SetMinimumLevel(logLevel))
             .CreateLogger("Test");
 
-        Write = (s) => output.WriteLine(s + "\r\n");
-    }
+    protected readonly Action<string> Write = (s) => output.WriteLine(s + "\r\n");
 }

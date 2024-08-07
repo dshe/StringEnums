@@ -2,10 +2,9 @@
 
 namespace StringEnums.Tests;
 
-public class Perf
+public class Perf(Action<string> write)
 {
-    private readonly Action<string> Write;
-    public Perf(Action<string> write) => Write = write;
+    private readonly Action<string> Write = write;
 
     private static double MeasureTicks(Action action)
     {

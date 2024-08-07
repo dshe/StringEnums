@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Xml.Linq;
 
 namespace StringEnums;
 
 // Class with self-referencing generic constraint:
+
+// Rename type name StringEnum so that it does not end in 'Enum'
 #pragma warning disable CA1711
 
 public abstract class StringEnum<T> where T : StringEnum<T>, new()
@@ -13,7 +16,7 @@ public abstract class StringEnum<T> where T : StringEnum<T>, new()
     // static ctor
     static StringEnum() => RuntimeHelpers.RunClassConstructor(typeof(T).TypeHandle);
 
-    private static Dictionary<string, T> Constants = new();
+    private static Dictionary<string, T> Constants = [];
     public static void SetStringComparer(StringComparer comparer) =>
         Constants = new Dictionary<string, T>(Constants, comparer);
 
@@ -25,8 +28,8 @@ public abstract class StringEnum<T> where T : StringEnum<T>, new()
         }
     }
 
-    private string[] Strings = Array.Empty<string>();
-    public IList<string> ToStrings() => Strings.ToList(); // return a copy
+    private string[] Strings = [];
+    public IEnumerable<string> ToStrings() => Strings;
     public override string ToString() => Strings.FirstOrDefault("");
 
     protected static T Create(params string[] strings) =>
@@ -36,7 +39,7 @@ public abstract class StringEnum<T> where T : StringEnum<T>, new()
     {
         ArgumentNullException.ThrowIfNull(strings);
 
-        if (!strings.Any())
+        if (strings.Length == 0)
             throw new ArgumentException("No strings!", nameof(strings));
 
         lock (Constants)

@@ -1,9 +1,7 @@
 ﻿namespace StringEnums.Tests;
 
-public class AddTests : TestBase
+public class AddTests(ITestOutputHelper output) : TestBase(output)
 {
-    public AddTests(ITestOutputHelper output) : base(output) { }
-
     public sealed class TestStringEnum : StringEnum<TestStringEnum>
     {
         public static readonly TestStringEnum Name1 = Create("first");
@@ -27,7 +25,6 @@ public class AddTests : TestBase
 
         Assert.Equal(newConstant, TestStringEnum.ToStringEnum(newString));
 
-        Assert.Equal(new[] { TestStringEnum.Name1, newConstant },
-            TestStringEnum.ToStringEnums());
+        Assert.Equal([TestStringEnum.Name1, newConstant], TestStringEnum.ToStringEnums());
     }
 }

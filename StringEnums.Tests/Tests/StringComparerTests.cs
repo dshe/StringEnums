@@ -1,9 +1,7 @@
 ﻿namespace StringEnums.Tests;
 
-public class StringComparerTests : TestBase
+public class StringComparerTests(ITestOutputHelper output) : TestBase(output)
 {
-    public StringComparerTests(ITestOutputHelper output) : base(output) { }
-
     public sealed class TestStringEnum : StringEnum<TestStringEnum> { }
 
     [Fact]

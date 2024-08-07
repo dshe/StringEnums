@@ -1,9 +1,7 @@
 ﻿namespace StringEnums.Tests;
 
-public class Example : TestBase
+public class Example(ITestOutputHelper output) : TestBase(output)
 {
-    public Example(ITestOutputHelper output) : base(output) { }
-
     public sealed class SecurityType : StringEnum<SecurityType>
     {
         public static SecurityType Undefined { get; } = Create("");
@@ -29,7 +27,7 @@ public class Example : TestBase
 
         Assert.Equal("BOND", SecurityType.Bond.ToString());
 
-        Assert.Equal(new[] { "BOND", "BND" }, SecurityType.Bond.ToStrings());
+        Assert.Equal(["BOND", "BND"], SecurityType.Bond.ToStrings());
     }
 
     [Fact]
@@ -42,7 +40,7 @@ public class Example : TestBase
 
         Assert.Equal("New SecurityType", newSecurityType!.ToString());
 
-        Assert.Equal(new[] { SecurityType.Undefined, SecurityType.Cash, SecurityType.Stock, SecurityType.Bond, newSecurityType },
+        Assert.Equal([SecurityType.Undefined, SecurityType.Cash, SecurityType.Stock, SecurityType.Bond, newSecurityType],
             SecurityType.ToStringEnums());
     }
 
