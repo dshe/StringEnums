@@ -8,9 +8,9 @@
     <PackageTags>string enum enumeration type-safe</PackageTags>
     <Description>A simple and flexible alternative to System.Enum, based on strings.</Description>
     <Authors>DavidS</Authors>
-    <Version>4.0.0</Version>
-    <AssemblyVersion>4.0.0</AssemblyVersion>
-    <FileVersion>4.0.0</FileVersion>
+    <Version>4.0.1</Version>
+    <AssemblyVersion>4.0.1</AssemblyVersion>
+    <FileVersion>4.0.1</FileVersion>
     <PackageIcon>worm64.png</PackageIcon>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/dshe/StringEnums</RepositoryUrl>
