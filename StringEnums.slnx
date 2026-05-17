@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="StringEnums.Tests/StringEnums.Tests.csproj" />
+  <Project Path="StringEnums/StringEnums.csproj" />
+</Solution>
