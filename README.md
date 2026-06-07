@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/badge/license-Apache%202.0-7755BB.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ***A simple and flexible alternative to System.Enum***
-- **.NET 8.0** library
+- **.NET 10.0** library
 - similar to System.Enum, but with underlying type **string**
 - enum constants are associated with **one or more string values**
 - string values may be added **dynamically**
