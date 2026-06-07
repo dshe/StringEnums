@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
-
 namespace StringEnums.Tests;
 
 public static class PrimitiveEnumEx

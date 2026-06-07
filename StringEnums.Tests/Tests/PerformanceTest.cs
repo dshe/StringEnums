@@ -1,6 +1,5 @@
 ﻿using System.Runtime.Serialization;
 using Microsoft.Extensions.Logging;
-
 namespace StringEnums.Tests;
 
 public class PerformanceTests : TestBase

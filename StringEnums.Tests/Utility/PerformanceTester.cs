@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-
 namespace StringEnums.Tests;
 
 public class Perf(Action<string> write)

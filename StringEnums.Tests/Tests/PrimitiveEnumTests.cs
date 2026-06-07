@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
-
 namespace StringEnums.Tests;
 
 public class PrimitiveEnumTests : TestBase

@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-
 namespace StringEnums.Tests;
 
 public class MainTests : TestBase

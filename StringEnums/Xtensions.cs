@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-
 namespace StringEnums;
 
 public static class Xtensions
