@@ -3,7 +3,7 @@ namespace StringEnums.Tests;
 
 public class Perf(Action<string> write)
 {
-    private readonly Action<string> Write = write;
+    private readonly Action<string> _write = write;
 
     private static double MeasureTicks(Action action)
     {
@@ -23,13 +23,13 @@ public class Perf(Action<string> write)
     public void MeasureRate(Action action, string label)
     {
         double frequency = Stopwatch.Frequency / MeasureTicks(action);
-        Write($"{frequency,11:####,###} {label}");
+        _write($"{frequency,11:####,###} {label}");
     }
 
     public void MeasureDuration(Action action, long iterations, string label)
     {
         long ticks = (long)(MeasureTicks(action) * iterations);
         TimeSpan ts = TimeSpan.FromTicks(ticks);
-        Write($"{ts} {label}");
+        _write($"{ts} {label}");
     }
 }

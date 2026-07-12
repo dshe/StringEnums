@@ -12,10 +12,7 @@ public class AddTests(ITestOutputHelper output) : TestBase(output)
     {
         const string newString = "new string";
 
-        TestStringEnum? newConstant = TestStringEnum.Add(newString);
-        if (newConstant == null)
-            throw new Exception("null");
-
+        TestStringEnum? newConstant = TestStringEnum.Add(newString) ?? throw new Exception("null");
         Assert.NotNull(newConstant);
 
         Assert.Null(TestStringEnum.Add(newString)); // string already exists

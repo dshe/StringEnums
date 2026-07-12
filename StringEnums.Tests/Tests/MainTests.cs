@@ -25,7 +25,7 @@ public class MainTests : TestBase
     [Fact]
     public void T02_ToStringEnums()
     {
-        Assert.Equal(new[] { TestStringEnum.Name1, TestStringEnum.Name2, TestStringEnum.Name4 },
+        Assert.Equal([TestStringEnum.Name1, TestStringEnum.Name2, TestStringEnum.Name4],
             TestStringEnum.ToStringEnums());
     }
 
@@ -40,9 +40,9 @@ public class MainTests : TestBase
     [Fact]
     public void T04_ToStrings()
     {
-        Assert.Equal(new[] { "1" }, TestStringEnum.Name1.ToStrings());
-        Assert.Equal(new[] { "2", "3" }, TestStringEnum.Name2.ToStrings());
-        Assert.Equal(new[] { "4" }, TestStringEnum.Name4.ToStrings());
+        Assert.Equal(["1"], TestStringEnum.Name1.ToStrings());
+        Assert.Equal(["2", "3"], TestStringEnum.Name2.ToStrings());
+        Assert.Equal(["4"], TestStringEnum.Name4.ToStrings());
     }
 
     [Fact]
